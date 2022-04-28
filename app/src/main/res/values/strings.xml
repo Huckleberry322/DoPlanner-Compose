@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">DoPlanner</string>
+    <string name="big_dot_symbol">⬤</string>
+    <string name="empty_task_description">No description for this task</string>
+    <string name="no_tasks_calendar">No tasks for this day</string>
+    <string name="daily_no_today_task">No today tasks</string>
+    <string name="daily_no_todo_task">No to do tasks</string>
+    <string name="daily_no_completed_task">No completed task yet</string>
+</resources>
