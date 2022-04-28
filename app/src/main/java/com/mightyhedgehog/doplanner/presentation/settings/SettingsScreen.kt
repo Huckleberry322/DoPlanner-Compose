@@ -6,11 +6,11 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.mightyhedgehog.doplanner.domain.model.settings.SettingsBundle
 import com.mightyhedgehog.doplanner.ui.compoments.settings.ChangeNameTitle
 import com.mightyhedgehog.doplanner.ui.compoments.settings.ChangeStyleTitle
 import com.mightyhedgehog.doplanner.ui.compoments.settings.ColorSchemeBox
 import com.mightyhedgehog.doplanner.ui.theme.*
+import com.mightyhedgehog.doplanner.ui.theme.style.DoPlannerStyle
 
 @Composable
 fun SettingsScreen(
@@ -31,10 +31,13 @@ fun SettingsScreen(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             ColorSchemeBox(color = orangeLightPalette.mainColor, onClick = {
+                vm.changeSchemeClicked(DoPlannerStyle.ORANGE)
             })
             ColorSchemeBox(color = blueLightPalette.mainColor, onClick = {
+                vm.changeSchemeClicked(DoPlannerStyle.BLUE)
             })
             ColorSchemeBox(color = pinkLightPalette.mainColor, onClick = {
+                vm.changeSchemeClicked(DoPlannerStyle.PINK)
             })
         }
         Row(
@@ -44,8 +47,10 @@ fun SettingsScreen(
             horizontalArrangement = Arrangement.SpaceEvenly
         ) {
             ColorSchemeBox(color = purpleLightPalette.mainColor, onClick = {
+                vm.changeSchemeClicked(DoPlannerStyle.PURPLE)
             })
             ColorSchemeBox(color = greenLightPalette.mainColor, onClick = {
+                vm.changeSchemeClicked(DoPlannerStyle.GREEN)
             })
         }
     }

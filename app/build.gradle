@@ -87,4 +87,7 @@ dependencies {
     //Calendar
     implementation("io.github.boguszpawlowski.composecalendar:composecalendar:0.5.0")
     implementation("io.github.boguszpawlowski.composecalendar:kotlinx-datetime:0.5.0")
+
+    //Jetpack DataStore
+    implementation("androidx.datastore:datastore-preferences:1.0.0")
 }

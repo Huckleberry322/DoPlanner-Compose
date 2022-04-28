@@ -1,6 +1,9 @@
 package com.mightyhedgehog.doplanner.app.di
 
 import android.content.Context
+import androidx.datastore.preferences.preferencesDataStore
+import com.mightyhedgehog.doplanner.data.local.datastore.ThemeDataStore
+import com.mightyhedgehog.doplanner.data.local.datastore.themeDataStore
 import com.mightyhedgehog.doplanner.data.local.json.task.CompletedTaskStorage
 import com.mightyhedgehog.doplanner.data.local.json.task.TaskStorage
 import com.mightyhedgehog.doplanner.data.local.json.user.UserStorage
@@ -37,5 +40,11 @@ object DataModule {
     fun provideUserStorage(@ApplicationContext context: Context) = UserStorage(
         storageDirectory = context.cacheDir.toString(),
         fileName = USER_STORAGE_FILENAME,
+    )
+
+    @Provides
+    @Singleton
+    fun provideThemeDataStore(@ApplicationContext context: Context) = ThemeDataStore(
+        dataStore = context.themeDataStore
     )
 }
