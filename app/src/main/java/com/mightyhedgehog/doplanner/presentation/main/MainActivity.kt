@@ -6,7 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
 import com.mightyhedgehog.doplanner.data.local.datastore.ThemeDataStore
-import com.mightyhedgehog.doplanner.ui.theme.style.DoPlannerStyle
+import com.mightyhedgehog.doplanner.ui.theme.DoPlannerStyle
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -20,8 +20,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            //val styleFlow = dataStore.getStyle
-            val currentStyle = dataStore.getStyle.collectAsState(DoPlannerStyle.GREEN.name)
+            val currentStyle = dataStore.getStyle.collectAsState(DoPlannerStyle.ORANGE.name)
 
             Log.i("test", currentStyle.value.toString())
 

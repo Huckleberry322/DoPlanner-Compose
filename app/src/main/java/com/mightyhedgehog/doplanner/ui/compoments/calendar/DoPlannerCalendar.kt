@@ -139,7 +139,7 @@ private fun CalendarDayContent(dayState: DayState<DynamicSelectionState>, task: 
             ),
         shape = RoundedCornerShape(DoPlannerTheme.shapes.calendarButtonShape),
         border = BorderStroke(1.dp, contentBorderColor),
-        backgroundColor = if (dayState.isCurrentDay) DoPlannerTheme.colors.secondOrange
+        backgroundColor = if (dayState.isCurrentDay) DoPlannerTheme.colors.secondaryColor
         else Color.Transparent,
         elevation = when {
             dayState.isCurrentDay -> {

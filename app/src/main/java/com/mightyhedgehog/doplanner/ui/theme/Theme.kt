@@ -6,7 +6,6 @@ import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.mightyhedgehog.doplanner.ui.theme.style.DoPlannerStyle
 
 @Composable
 fun DoPlannerTheme(

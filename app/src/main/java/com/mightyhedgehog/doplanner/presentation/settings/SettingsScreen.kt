@@ -10,7 +10,7 @@ import com.mightyhedgehog.doplanner.ui.compoments.settings.ChangeNameTitle
 import com.mightyhedgehog.doplanner.ui.compoments.settings.ChangeStyleTitle
 import com.mightyhedgehog.doplanner.ui.compoments.settings.ColorSchemeBox
 import com.mightyhedgehog.doplanner.ui.theme.*
-import com.mightyhedgehog.doplanner.ui.theme.style.DoPlannerStyle
+import com.mightyhedgehog.doplanner.ui.theme.DoPlannerStyle
 
 @Composable
 fun SettingsScreen(

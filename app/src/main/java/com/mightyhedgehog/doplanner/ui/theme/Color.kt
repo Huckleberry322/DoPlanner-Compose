@@ -8,7 +8,7 @@ val baseLightPalette = DoPlannerColors(
     backgroundWhite = Color(0xFFFCFCFF),
     grey = Color(0xFF7E7E7E),
     mainColor = Color(0xFFFF7300),
-    secondOrange = Color(0xFFFFAE6C),
+    secondaryColor = Color(0xFFFFAE6C),
     redBackground = Color(0xFFB90000),
     blueBackground = Color(0xFF0943D6),
     greenBackground = Color(0xFF33CE08),
@@ -26,7 +26,7 @@ val baseDarkPalette = DoPlannerColors(
     backgroundWhite = Color(0xFFFCFCFF),
     grey = Color(0xFF7E7E7E),
     mainColor = Color(0xFFFF7300),
-    secondOrange = Color(0xFFFFAE6C),
+    secondaryColor = Color(0xFFFFAE6C),
     redBackground = Color(0xFFB90000),
     blueBackground = Color(0xFF0943D6),
     greenBackground = Color(0xFF33CE08),
@@ -40,40 +40,50 @@ val baseDarkPalette = DoPlannerColors(
 
 val orangeLightPalette = baseLightPalette.copy(
     mainColor = Color(0xFFFF7300),
+    secondaryColor = Color(0xFFFFAE6C),
 )
 
 val orangeDarkPalette = baseDarkPalette.copy(
     mainColor = Color(0xFFFF7300),
+    secondaryColor = Color(0xFFFFAE6C),
 )
 
 val blueLightPalette = baseLightPalette.copy(
     mainColor = Color(0xFF7AD9FF),
+    secondaryColor = Color(0xFFC4EEFF),
 )
 
 val blueDarkPalette = baseDarkPalette.copy(
     mainColor = Color(0xFF7AD9FF),
+    secondaryColor = Color(0xFFC4EEFF),
 )
 
 val pinkLightPalette = baseLightPalette.copy(
     mainColor = Color(0xFFFF8BD8),
+    secondaryColor = Color(0xFFFFCFEF),
 )
 
 val pinkDarkPalette = baseDarkPalette.copy(
     mainColor = Color(0xFFFF8BD8),
+    secondaryColor = Color(0xFFFFCFEF),
 )
 
 val purpleLightPalette = baseLightPalette.copy(
     mainColor = Color(0xFFAC36FF),
+    secondaryColor = Color(0xFFCF8BFF),
 )
 
 val purpleDarkPalette = baseDarkPalette.copy(
     mainColor = Color(0xFFAC36FF),
+    secondaryColor = Color(0xFFCF8BFF),
 )
 
 val greenLightPalette = baseLightPalette.copy(
     mainColor = Color(0xFF64E096),
+    secondaryColor = Color(0xFF9EE6BB),
 )
 
 val greenDarkPalette = baseDarkPalette.copy(
     mainColor = Color(0xFF64E096),
+    secondaryColor = Color(0xFF9EE6BB),
 )

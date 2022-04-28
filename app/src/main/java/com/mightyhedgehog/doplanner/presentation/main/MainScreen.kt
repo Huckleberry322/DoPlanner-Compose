@@ -13,7 +13,9 @@ import com.mightyhedgehog.doplanner.ui.compoments.bars.bottombar.BottomBar
 fun MainScreen() {
     val navController = rememberNavController()
     Scaffold(
-        bottomBar = { BottomBar(navController = navController) }
+        bottomBar = {
+            BottomBar(navController = navController)
+        }
     ) { innerPadding ->
         Box(modifier = Modifier.padding(bottom = innerPadding.calculateBottomPadding())) {
             SetupNavGraph(navController = navController)

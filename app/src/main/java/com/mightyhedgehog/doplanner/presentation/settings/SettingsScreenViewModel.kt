@@ -3,7 +3,7 @@ package com.mightyhedgehog.doplanner.presentation.settings
 import androidx.lifecycle.viewModelScope
 import com.mightyhedgehog.doplanner.app.core.StatefulViewModel
 import com.mightyhedgehog.doplanner.data.local.datastore.ThemeDataStore
-import com.mightyhedgehog.doplanner.ui.theme.style.DoPlannerStyle
+import com.mightyhedgehog.doplanner.ui.theme.DoPlannerStyle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -13,9 +13,7 @@ class SettingsScreenViewModel @Inject constructor(
     private val themeDataStore: ThemeDataStore
 ) : StatefulViewModel<SettingsScreenViewModel>() {
 
-    sealed class Event() {
-
-    }
+    sealed class Event
 
     class State
 
