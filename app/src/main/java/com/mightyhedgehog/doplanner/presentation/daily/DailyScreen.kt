@@ -24,44 +24,38 @@ fun DailyScreen(vm: DailyScreenViewModel, navController: NavHostController) {
     var rowsVisibility by remember { mutableStateOf(false) }
     when (val state = viewState.value) {
         is DailyScreenViewModel.State.Display -> {
-            Scaffold(
-                floatingActionButton = {
-                    DoPlannerFloatingButton(onClick = {})
-                },
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .background(DoPlannerTheme.colors.backgroundWhite)
+                    .verticalScroll(rememberScrollState())
             ) {
-                Column(
-                    modifier = Modifier
-                        .fillMaxSize()
-                        .background(DoPlannerTheme.colors.backgroundWhite)
-                        .verticalScroll(rememberScrollState())
-                ) {
-                    WelcomeBar(
-                        user = state.user,
-                        modifier = Modifier.padding(start = 16.dp, top = 16.dp)
-                    )
-                    TodayTasksTitle(
-                        count = state.dailyTasks.size,
-                        modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 16.dp)
-                    )
-                    AnimatedVisibility(visible = rowsVisibility) {
-                        TodayTasksLazyRow(tasksList = state.dailyTasks)
-                    }
-                    AllTasksTitle(
-                        count = state.tasks.size,
-                        modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
-                    )
-                    AnimatedVisibility(visible = rowsVisibility) {
-                        ToDoLazyRow(tasksList = state.tasks)
-                    }
-                    CompletedTasksTitle(
-                        count = state.completedTasks.size,
-                        modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
-                    )
-                    AnimatedVisibility(visible = rowsVisibility) {
-                        CompletedLazyRow(tasksList = state.completedTasks)
-                    }
-                    rowsVisibility = true
+                WelcomeBar(
+                    user = state.user,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp)
+                )
+                TodayTasksTitle(
+                    count = state.dailyTasks.size,
+                    modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 16.dp)
+                )
+                AnimatedVisibility(visible = rowsVisibility) {
+                    TodayTasksLazyRow(tasksList = state.dailyTasks)
                 }
+                AllTasksTitle(
+                    count = state.tasks.size,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
+                )
+                AnimatedVisibility(visible = rowsVisibility) {
+                    ToDoLazyRow(tasksList = state.tasks)
+                }
+                CompletedTasksTitle(
+                    count = state.completedTasks.size,
+                    modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
+                )
+                AnimatedVisibility(visible = rowsVisibility) {
+                    CompletedLazyRow(tasksList = state.completedTasks)
+                }
+                rowsVisibility = true
             }
         }
         DailyScreenViewModel.State.Loading -> {
