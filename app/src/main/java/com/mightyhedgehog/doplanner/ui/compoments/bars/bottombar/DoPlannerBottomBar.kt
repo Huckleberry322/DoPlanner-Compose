@@ -1,40 +1,58 @@
 package com.mightyhedgehog.doplanner.ui.compoments.bars.bottombar
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.MutableState
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import com.mightyhedgehog.doplanner.R
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavBackStackEntry
 import androidx.navigation.NavDestination
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.mightyhedgehog.doplanner.app.navigation.Screens
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable
-fun BottomBar(navController: NavHostController) {
+fun DoPlannerBottomBar(
+    navController: NavHostController,
+    navBackStackEntry: NavBackStackEntry?,
+    bottomBarState: MutableState<Boolean>
+) {
     val destinationsList = listOf(
         BottomBarGraph.DailyGraph,
         BottomBarGraph.CalendarGraph,
         BottomBarGraph.SettingsGraph,
     )
-    val navBackStackEntry by navController.currentBackStackEntryAsState()
-    val currentDestination = navBackStackEntry?.destination
 
-    BottomNavigation(
-        backgroundColor = DoPlannerTheme.colors.white,
-        elevation = 20.dp
+    AnimatedVisibility(
+        visible = bottomBarState.value,
+        enter = slideInVertically(initialOffsetY = { it }),
+        exit = slideOutVertically(targetOffsetY = { it }),
     ) {
-        destinationsList.forEach { nestedGraph ->
-            AddItemToBottomBar(
-                graph = nestedGraph,
-                currentDestination = currentDestination,
-                navController = navController
-            )
+        val currentDestination = navBackStackEntry?.destination
+
+        BottomNavigation(
+            backgroundColor = DoPlannerTheme.colors.white,
+            elevation = 20.dp
+        ) {
+            destinationsList.forEach { nestedGraph ->
+                AddItemToBottomBar(
+                    graph = nestedGraph,
+                    currentDestination = currentDestination,
+                    navController = navController
+                )
+            }
         }
     }
 }

@@ -59,7 +59,6 @@ class CalendarScreenViewModel @Inject constructor(
     private fun reduceEvent(event: Event, state: State.Display) {
         when (event) {
             is Event.DateChanged -> {
-
                 _currentState.postValue(
                     state.copy(
                         currentDate = event.date,

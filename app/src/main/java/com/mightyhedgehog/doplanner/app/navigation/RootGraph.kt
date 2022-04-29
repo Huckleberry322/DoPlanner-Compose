@@ -1,5 +1,6 @@
 package com.mightyhedgehog.doplanner.app.navigation
 
+import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
@@ -17,7 +18,6 @@ fun SetupNavGraph(navController: NavHostController) {
         startDestination = DAILY_SCREEN_NESTED_GRAPH,
         route = ROOT_ROUTE
     ) {
-
         dailyGraph(navController = navController)
         toDoGraph(navController = navController)
         settingsGraph(navController = navController)

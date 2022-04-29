@@ -8,10 +8,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 
-enum class DoPlannerStyle {
-    ORANGE, BLUE, PINK, PURPLE, GREEN
-}
-
 @Immutable
 data class DoPlannerColors(
     val black: Color,
@@ -19,7 +15,7 @@ data class DoPlannerColors(
     val backgroundWhite: Color,
     val grey: Color,
     val mainColor: Color,
-    val secondOrange: Color,
+    val secondaryColor: Color,
     val redBackground: Color,
     val blueBackground: Color,
     val greenBackground: Color,
