@@ -2,4 +2,10 @@
 <resources>
 
     <style name="Theme.DoPlanner" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="SplashScreenTheme" parent="Theme.DoPlanner">
+        <item name="android:statusBarColor">#FFFCFCFF</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:windowBackground">@drawable/bg_splash</item>
+    </style>
 </resources>

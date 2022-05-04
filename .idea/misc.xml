@@ -67,7 +67,11 @@
         <entry key="../../../../../layout/compose-model-1651160350021.xml" value="0.1787037037037037" />
         <entry key="../../../../../layout/compose-model-1651223348370.xml" value="0.1" />
         <entry key="../../../../../layout/compose-model-1651224006077.xml" value="0.75" />
+        <entry key="../../../../../layout/compose-model-1651661937464.xml" value="5.0" />
+        <entry key="../../../../../layout/compose-model-1651661937546.xml" value="0.6827586206896552" />
         <entry key="app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.131" />
+        <entry key="app/src/main/res/drawable/bg_splash.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_splash_12.xml" value="0.1485" />
         <entry key="app/src/main/res/drawable/ic_add.xml" value="0.182" />
         <entry key="app/src/main/res/drawable/ic_bar_daily.xml" value="0.131" />
         <entry key="app/src/main/res/drawable/ic_bar_dot.xml" value="0.144" />
@@ -77,8 +81,11 @@
         <entry key="app/src/main/res/drawable/ic_calendar_dot.xml" value="0.156" />
         <entry key="app/src/main/res/drawable/ic_complete.xml" value="0.182" />
         <entry key="app/src/main/res/drawable/ic_flag.xml" value="0.182" />
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1485" />
+        <entry key="app/src/main/res/drawable/ic_logo.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_next.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_previous.xml" value="0.33" />
+        <entry key="app/src/main/res/drawable/news_avd_v02.xml" value="0.1325" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.131" />
         <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.131" />
       </map>

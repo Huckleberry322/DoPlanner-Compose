@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="Theme.DoPlanner" parent="android:Theme.Material.Light.NoActionBar" />
+
+    <style name="SplashScreenTheme" parent="Theme.SplashScreen">
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:statusBarColor">#FFFCFCFF</item>
+
+        <item name="windowSplashScreenBackground">#FFFCFCFF</item>
+        <item name="windowSplashScreenAnimationDuration">1000</item>
+        <item name="postSplashScreenTheme">@style/Theme.DoPlanner</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/bg_splash_12</item>
+    </style>
+</resources>

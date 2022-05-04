@@ -21,8 +21,8 @@ fun DoPlannerFloatingButton(
 ) {
     AnimatedVisibility(
         visible = fabState.value,
-        enter = slideInHorizontally(initialOffsetX = { 300 }),
-        exit = slideOutHorizontally(targetOffsetX = { 300 }),
+        enter = slideInHorizontally(initialOffsetX = { 200 }),
+        exit = slideOutHorizontally(targetOffsetX = { 200 }),
     ) {
         FloatingActionButton(
             onClick = { navController.navigate(Screens.AddTaskScreen.route) },

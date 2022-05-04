@@ -1,7 +1,6 @@
 package com.mightyhedgehog.doplanner.presentation.main
 
 import android.os.Bundle
-import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.*
@@ -21,8 +20,6 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             val currentStyle = dataStore.getStyle.collectAsState(DoPlannerStyle.ORANGE.name)
-
-            Log.i("test", currentStyle.value.toString())
 
             DoPlannerTheme(
                 style = DoPlannerStyle.valueOf(currentStyle.value!!)
