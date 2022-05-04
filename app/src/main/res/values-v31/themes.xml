@@ -10,6 +10,7 @@
         <item name="windowSplashScreenBackground">#FFFCFCFF</item>
         <item name="windowSplashScreenAnimationDuration">1000</item>
         <item name="postSplashScreenTheme">@style/Theme.DoPlanner</item>
-        <item name="windowSplashScreenAnimatedIcon">@drawable/bg_splash_12</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/temp_splash_icon</item>
+        <item name="android:windowSplashScreenBrandingImage">@drawable/splash_text_12_layer</item>
     </style>
 </resources>
