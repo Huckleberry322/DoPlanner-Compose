@@ -17,7 +17,7 @@ android {
         minSdk 26
         targetSdk 31
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.7"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -90,4 +90,7 @@ dependencies {
 
     //Jetpack DataStore
     implementation("androidx.datastore:datastore-preferences:1.0.0")
+
+    // Splash screen Api
+    implementation("androidx.core:core-splashscreen:1.0.0-beta01")
 }
