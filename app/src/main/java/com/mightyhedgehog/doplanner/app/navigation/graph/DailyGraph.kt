@@ -6,10 +6,10 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.navigation
 import com.mightyhedgehog.doplanner.app.navigation.Screens
-import com.mightyhedgehog.doplanner.presentation.daily.DailyScreen
-import com.mightyhedgehog.doplanner.presentation.daily.DailyScreenViewModel
-import com.mightyhedgehog.doplanner.presentation.daily.add.AddTaskScreen
-import com.mightyhedgehog.doplanner.presentation.daily.add.AddTaskScreenViewModel
+import com.mightyhedgehog.doplanner.presentation.screen.daily.DailyScreen
+import com.mightyhedgehog.doplanner.presentation.screen.daily.DailyScreenViewModel
+import com.mightyhedgehog.doplanner.presentation.screen.daily.add.AddTaskScreen
+import com.mightyhedgehog.doplanner.presentation.screen.daily.add.AddTaskScreenViewModel
 
 const val DAILY_SCREEN_NESTED_GRAPH = "daily_screen_nested_graph"
 

@@ -6,9 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.mightyhedgehog.doplanner.app.navigation.Screens
-import com.mightyhedgehog.doplanner.domain.model.settings.SettingsBundle
-import com.mightyhedgehog.doplanner.presentation.settings.SettingsScreen
-import com.mightyhedgehog.doplanner.presentation.settings.SettingsScreenViewModel
+import com.mightyhedgehog.doplanner.presentation.screen.settings.SettingsScreen
+import com.mightyhedgehog.doplanner.presentation.screen.settings.SettingsScreenViewModel
 
 const val SETTINGS_SCREEN_NESTED_GRAPH = "settings_screen_nested_graph"
 

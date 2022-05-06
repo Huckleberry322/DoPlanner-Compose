@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.presentation.main
+package com.mightyhedgehog.doplanner.presentation.screen.main
 
 import android.annotation.SuppressLint
 import android.content.Intent

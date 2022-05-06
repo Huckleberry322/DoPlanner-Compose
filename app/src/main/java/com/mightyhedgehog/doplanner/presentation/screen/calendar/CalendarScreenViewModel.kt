@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.presentation.calendar
+package com.mightyhedgehog.doplanner.presentation.screen.calendar
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

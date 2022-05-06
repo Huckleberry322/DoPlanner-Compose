@@ -15,6 +15,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.SpanStyle
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.R
@@ -32,11 +33,15 @@ fun WelcomeBar(user: User, modifier: Modifier) {
                 .clip(CircleShape)
         )
         Spacer(modifier = Modifier.width(10.dp))
-        Text(style = DoPlannerTheme.typography.welcomeBarStyle, text = buildAnnotatedString {
-            append("Hello, ")
-            pushStyle(style = SpanStyle(fontWeight = FontWeight.Bold))
-            append(user.name)
-        })
+        Text(
+            style = DoPlannerTheme.typography.welcomeBarStyle, text = buildAnnotatedString {
+                append("Hello, ")
+                pushStyle(style = SpanStyle(fontWeight = FontWeight.Bold))
+                append(user.name)
+            },
+            overflow = TextOverflow.Ellipsis,
+            maxLines = 2
+        )
     }
 }
 

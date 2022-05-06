@@ -1,10 +1,9 @@
-package com.mightyhedgehog.doplanner.presentation.daily
+package com.mightyhedgehog.doplanner.presentation.screen.daily
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mightyhedgehog.doplanner.app.core.StatefulViewModel
-import com.mightyhedgehog.doplanner.data.local.json.task.TaskStorage
 import com.mightyhedgehog.doplanner.domain.model.task.Task
 import com.mightyhedgehog.doplanner.domain.model.user.User
 import com.mightyhedgehog.doplanner.domain.usecase.task.GetCompletedTasksUseCase
@@ -20,6 +19,7 @@ class DailyScreenViewModel @Inject constructor(
     private val getTasksUseCase: GetTasksUseCase,
     private val getCompletedTasksUseCase: GetCompletedTasksUseCase,
     private val getUserUseCase: GetUserUseCase,
+    dailyUpdateHandler: DailyUpdateHandler,
 ) : StatefulViewModel<DailyScreenViewModel.Event>() {
 
     private val _currentState: MutableLiveData<State> =
@@ -27,6 +27,11 @@ class DailyScreenViewModel @Inject constructor(
     val currentState: LiveData<State> = _currentState
 
     init {
+        initDailyViewModel()
+        dailyUpdateHandler.data.safeObserve { initDailyViewModel() }
+    }
+
+    private fun initDailyViewModel() {
         viewModelScope.launch {
             val taskList = getTasksUseCase.execute()
             val completedTaskList = getCompletedTasksUseCase.execute()
@@ -53,27 +58,17 @@ class DailyScreenViewModel @Inject constructor(
     sealed class State {
         data class Display(
             val user: User,
-            val tasks: List<Task> = emptyList(),
-            val dailyTasks: List<Task> = emptyList(),
-            val completedTasks: List<Task> = emptyList(),
+            val tasks: List<Task>,
+            val dailyTasks: List<Task>,
+            val completedTasks: List<Task>,
         ) : State()
 
         object Loading : State()
     }
 
-    sealed class Event {
-        data class CompleteTask(val task: String) : Event()
-        data class AddTask(val task: String) : Event()
-    }
+    sealed class Event
 
     override fun onEvent(event: Event) {
-        when (event) {
-            is Event.CompleteTask -> {
 
-            }
-            is Event.AddTask -> {
-
-            }
-        }
     }
 }

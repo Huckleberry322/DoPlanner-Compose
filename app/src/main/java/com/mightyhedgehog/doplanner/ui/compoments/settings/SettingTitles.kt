@@ -91,6 +91,7 @@ fun ChangeStyleTitlePreview() {
     }
 }
 
+@Deprecated("Design changes.")
 @Composable
 fun SettingsSaveClickableTitle(modifier: Modifier = Modifier) {
     Box(modifier = modifier
@@ -107,6 +108,7 @@ fun SettingsSaveClickableTitle(modifier: Modifier = Modifier) {
     }
 }
 
+@Deprecated("Design changes.")
 @Composable
 @Preview
 fun SettingsSaveClickableTitlePreview() {
