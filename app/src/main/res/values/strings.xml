@@ -6,4 +6,6 @@
     <string name="daily_no_today_task">No today tasks</string>
     <string name="daily_no_todo_task">No to do tasks</string>
     <string name="daily_no_completed_task">No completed task yet</string>
+    <string name="settings">Settings</string>
+    <string name="save">Save</string>
 </resources>

@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.presentation.calendar
+package com.mightyhedgehog.doplanner.presentation.screen.calendar
 
 import androidx.compose.animation.animateContentSize
 import androidx.compose.foundation.background
@@ -12,14 +12,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
-import com.mightyhedgehog.doplanner.ui.compoments.bars.bottombar.BottomBarPadding
 import com.mightyhedgehog.doplanner.ui.compoments.bars.progress.OrangeDotProgressBar
 import com.mightyhedgehog.doplanner.ui.compoments.calendar.CalendarLazyColumn
 import com.mightyhedgehog.doplanner.ui.compoments.calendar.DoPlannerCalendar
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable
-fun CalendarScreen(vm: CalendarScreenViewModel, navController: NavHostController) {
+fun CalendarScreen(
+    vm: CalendarScreenViewModel,
+    navController: NavHostController
+) {
     val viewState = vm.currentState.observeAsState()
 
     when (val state = viewState.value) {

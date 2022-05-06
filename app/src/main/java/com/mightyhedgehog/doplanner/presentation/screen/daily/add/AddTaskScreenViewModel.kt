@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.presentation.daily.add
+package com.mightyhedgehog.doplanner.presentation.screen.daily.add
 
 import com.mightyhedgehog.doplanner.app.core.StatefulViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel

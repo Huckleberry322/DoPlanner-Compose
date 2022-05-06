@@ -6,8 +6,8 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import androidx.navigation.navigation
 import com.mightyhedgehog.doplanner.app.navigation.Screens
-import com.mightyhedgehog.doplanner.presentation.calendar.CalendarScreen
-import com.mightyhedgehog.doplanner.presentation.calendar.CalendarScreenViewModel
+import com.mightyhedgehog.doplanner.presentation.screen.calendar.CalendarScreen
+import com.mightyhedgehog.doplanner.presentation.screen.calendar.CalendarScreenViewModel
 
 const val CALENDAR_SCREEN_NESTED_GRAPH = "calendar_screen_nested_graph"
 
