@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.ui.compoments.calendar
+package com.mightyhedgehog.doplanner.ui.compoments.screen.calendar
 
 import androidx.compose.animation.animateColorAsState
 import androidx.compose.animation.animateContentSize

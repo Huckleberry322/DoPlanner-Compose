@@ -12,7 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.mightyhedgehog.doplanner.ui.compoments.bars.progress.OrangeDotProgressBar
-import com.mightyhedgehog.doplanner.ui.compoments.daily.*
+import com.mightyhedgehog.doplanner.ui.compoments.screen.daily.*
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable

@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.ui.compoments.daily
+package com.mightyhedgehog.doplanner.ui.compoments.screen.daily
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues

@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.ui.compoments.calendar
+package com.mightyhedgehog.doplanner.ui.compoments.screen.calendar
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

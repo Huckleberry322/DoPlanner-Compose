@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.ui.compoments.calendar
+package com.mightyhedgehog.doplanner.ui.compoments.screen.calendar
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.PaddingValues
@@ -12,7 +12,7 @@ import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.R
 import com.mightyhedgehog.doplanner.domain.model.task.Task
 import com.mightyhedgehog.doplanner.ext.toString
-import com.mightyhedgehog.doplanner.ui.compoments.daily.CalendarTaskCard
+import com.mightyhedgehog.doplanner.ui.compoments.screen.daily.CalendarTaskCard
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 import java.time.LocalDate
 

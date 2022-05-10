@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.ui.compoments.daily
+package com.mightyhedgehog.doplanner.ui.compoments.screen.daily
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Row
@@ -17,6 +17,7 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.R
 import com.mightyhedgehog.doplanner.domain.model.user.User
@@ -25,13 +26,7 @@ import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 @Composable
 fun WelcomeBar(user: User, modifier: Modifier) {
     Row(modifier = modifier, verticalAlignment = Alignment.CenterVertically) {
-        Image(
-            painter = painterResource(id = R.drawable.temp_avatar),
-            contentDescription = null,
-            modifier = Modifier
-                .size(40.dp)
-                .clip(CircleShape)
-        )
+        UserImage(modifier = Modifier.size(40.dp))
         Spacer(modifier = Modifier.width(10.dp))
         Text(
             style = DoPlannerTheme.typography.welcomeBarStyle, text = buildAnnotatedString {
@@ -51,13 +46,7 @@ fun WelcomeBarPreview() {
     val userName = "Cody"
     DoPlannerTheme {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Image(
-                painter = painterResource(id = R.drawable.temp_avatar),
-                contentDescription = null,
-                modifier = Modifier
-                    .size(40.dp)
-                    .clip(CircleShape)
-            )
+            UserImage(modifier = Modifier.size(40.dp))
             Spacer(modifier = Modifier.width(10.dp))
             Text(style = DoPlannerTheme.typography.welcomeBarStyle, text = buildAnnotatedString {
                 append("Hello, ")
@@ -66,4 +55,16 @@ fun WelcomeBarPreview() {
             })
         }
     }
+}
+
+@Composable
+fun UserImage(
+    modifier: Modifier = Modifier,
+) {
+    Image(
+        painter = painterResource(id = R.drawable.temp_avatar),
+        contentDescription = null,
+        modifier = modifier
+            .clip(CircleShape)
+    )
 }
