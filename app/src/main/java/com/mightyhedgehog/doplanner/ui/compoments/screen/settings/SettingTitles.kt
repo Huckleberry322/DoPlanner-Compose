@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.ui.compoments.settings
+package com.mightyhedgehog.doplanner.ui.compoments.screen.settings
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box

@@ -1,15 +1,24 @@
 package com.mightyhedgehog.doplanner.ui.compoments.text
 
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.text.BasicTextField
 import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Divider
 import androidx.compose.material.OutlinedTextField
+import androidx.compose.material.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
+import com.mightyhedgehog.doplanner.R
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
+import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.domain.model.user.User
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
@@ -57,8 +66,49 @@ fun DoPlannerBasicTextFieldWithDoneIme(
 }
 
 @Composable
+fun DoPlannerBasicFieldField(
+    modifier: Modifier = Modifier,
+    text: String,
+    onValueChanged:(String) -> Unit,
+    paddingTop: Dp,
+    dividerThickness: Dp,
+    hintRes: Int,
+    readOnly: Boolean = false,
+    ) {
+
+    Column {
+        BasicTextField(
+            modifier = modifier.padding(top = paddingTop),
+            readOnly = readOnly,
+            value = text,
+            onValueChange = onValueChanged,
+            singleLine = true,
+            decorationBox = { innerTextField ->
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth(),
+                    contentAlignment = Alignment.CenterStart,
+                ) {
+                    if (text.isEmpty()) {
+                        Text(
+                            text = stringResource(id = hintRes),
+                            color = DoPlannerTheme.colors.black.copy(alpha = 0.2F),
+                        )
+                    }
+                    innerTextField()
+                }
+            }
+        )
+        Divider(
+            modifier = modifier.padding(top = 8.dp),
+            thickness = dividerThickness
+        )
+    }
+}
+
+@Composable
 @Preview
-fun DoPlannerBasicTextFieldPreview() {
+fun DoPlannerOutlineTextFieldPreview() {
     DoPlannerTheme {
         val text = "Sir Cody III"
 
@@ -68,5 +118,40 @@ fun DoPlannerBasicTextFieldPreview() {
             singleLine = true,
             textStyle = DoPlannerTheme.typography.dailyTitlesStyle,
         )
+    }
+}
+
+@Composable
+@Preview
+fun DoPlannerBasicTextFieldPreview() {
+    DoPlannerTheme {
+        Column {
+            var currentText by remember { mutableStateOf("") }
+
+            BasicTextField(
+                value = currentText,
+                onValueChange = { currentText = it },
+                singleLine = true,
+                decorationBox = { innerTextField ->
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth(),
+                        contentAlignment = Alignment.CenterStart,
+                    ) {
+                        if (currentText.isEmpty()) {
+                            Text(
+                                text = stringResource(id = R.string.title_hint),
+                                color = DoPlannerTheme.colors.black.copy(alpha = 0.2F),
+                            )
+                        }
+                        innerTextField()
+                    }
+                }
+            )
+            Divider(
+                modifier = Modifier.padding(top = 8.dp),
+                thickness = 0.5.dp
+            )
+        }
     }
 }

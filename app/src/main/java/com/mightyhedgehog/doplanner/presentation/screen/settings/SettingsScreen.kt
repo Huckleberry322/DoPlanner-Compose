@@ -10,7 +10,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavHostController
 import com.mightyhedgehog.doplanner.ui.compoments.bars.progress.OrangeDotProgressBar
-import com.mightyhedgehog.doplanner.ui.compoments.settings.*
+import com.mightyhedgehog.doplanner.ui.compoments.screen.settings.*
 import com.mightyhedgehog.doplanner.ui.compoments.text.ChangeUserNameTextField
 import com.mightyhedgehog.doplanner.ui.theme.*
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerStyle
@@ -86,7 +86,8 @@ fun SettingsScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 72.dp), contentAlignment = Alignment.Center
+                    .padding(bottom = 72.dp),
+                contentAlignment = Alignment.Center
             ) {
                 OrangeDotProgressBar()
             }

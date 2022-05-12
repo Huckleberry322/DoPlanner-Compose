@@ -1,5 +1,6 @@
 package com.mightyhedgehog.doplanner.app.di
 
+import com.mightyhedgehog.doplanner.presentation.screen.calendar.CalendarUpdateHandler
 import com.mightyhedgehog.doplanner.presentation.screen.daily.DailyUpdateHandler
 import dagger.Module
 import dagger.Provides
@@ -14,4 +15,8 @@ object HandlerModule {
     @Provides
     @Singleton
     fun provideDailyUpdateHandler() = DailyUpdateHandler()
+
+    @Provides
+    @Singleton
+    fun provideCalendarUpdateHandler() = CalendarUpdateHandler()
 }

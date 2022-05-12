@@ -8,4 +8,14 @@
     <string name="daily_no_completed_task">No completed task yet</string>
     <string name="settings">Settings</string>
     <string name="save">Save</string>
+    <string name="task_title">Task title*</string>
+    <string name="title_hint">Your task title</string>
+    <string name="task_description">Description</string>
+    <string name="description_hint">Your task description</string>
+    <string name="task_priority">Priority</string>
+    <string name="task_date">Date*</string>
+    <string name="date_hint">Select date</string>
+    <string name="button_add_task">Add new Task</string>
+    <string name="task_time">Time*</string>
+    <string name="time_hint">Select time</string>
 </resources>

@@ -1,9 +1,6 @@
 package com.mightyhedgehog.doplanner.ext
 
-import java.time.Instant
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneId
+import java.time.*
 import java.time.format.DateTimeFormatter
 
 fun LocalDateTime.toEpochMillis() = this.atZone(ZoneId.systemDefault()).toInstant().toEpochMilli()
@@ -16,3 +13,7 @@ fun LocalDateTime.toString(pattern: String): String = this
 
 fun LocalDate.toString(pattern: String): String = this
     .format(DateTimeFormatter.ofPattern(pattern))
+
+fun LocalTime.toString(pattern: String) : String = this
+    .format(DateTimeFormatter.ofPattern(pattern))
+

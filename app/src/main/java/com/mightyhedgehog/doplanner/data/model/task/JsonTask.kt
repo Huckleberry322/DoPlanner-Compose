@@ -1,7 +1,7 @@
 package com.mightyhedgehog.doplanner.data.model.task
 
 data class JsonTask(
-    val id: Int,
+    val id: String,
     val name: String,
     val description: String,
     val date: Long,

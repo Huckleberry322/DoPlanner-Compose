@@ -16,7 +16,7 @@ import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable
 fun DoPlannerFloatingButton(
-    navController: NavController,
+    onClick: () -> Unit,
     fabState: MutableState<Boolean>
 ) {
     AnimatedVisibility(
@@ -25,7 +25,7 @@ fun DoPlannerFloatingButton(
         exit = slideOutHorizontally(targetOffsetX = { 200 }),
     ) {
         FloatingActionButton(
-            onClick = { navController.navigate(Screens.AddTaskScreen.route) },
+            onClick = onClick,
             shape = RoundedCornerShape(DoPlannerTheme.shapes.floatingButtonShape),
             backgroundColor = DoPlannerTheme.colors.mainColor,
             contentColor = DoPlannerTheme.colors.white

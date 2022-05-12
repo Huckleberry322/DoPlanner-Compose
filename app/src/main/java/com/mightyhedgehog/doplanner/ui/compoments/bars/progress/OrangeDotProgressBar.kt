@@ -22,7 +22,7 @@ fun OrangeDotProgressBar(
     circleSize: Dp = 10.dp,
     circleColor: Color = DoPlannerTheme.colors.mainColor,
     spaceBetween: Dp = 10.dp,
-    travelDistance: Dp = 20.dp
+    travelDistance: Dp = 20.dp,
 ) {
     val circles = listOf(
         remember { Animatable(initialValue = 0f) },
