@@ -15,6 +15,7 @@ import com.mightyhedgehog.doplanner.app.navigation.Screens
 import com.mightyhedgehog.doplanner.app.navigation.SetupNavGraph
 import com.mightyhedgehog.doplanner.ui.compoments.bars.bottombar.DoPlannerBottomBar
 import com.mightyhedgehog.doplanner.ui.compoments.buttons.DoPlannerFloatingButton
+import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable
 fun MainScreen() {
@@ -56,6 +57,7 @@ fun MainScreen() {
                 fabState = fabState
             )
         },
+        backgroundColor = DoPlannerTheme.colors.backgroundWhite
     ) { innerPadding ->
         var bottomPaddingState by remember { mutableStateOf(0.dp) }
         bottomPaddingState = innerPadding.calculateBottomPadding()

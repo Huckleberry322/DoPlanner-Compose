@@ -16,4 +16,6 @@
     <string name="task_date">Date*</string>
     <string name="date_hint">Select date</string>
     <string name="button_add_task">Add new Task</string>
+    <string name="task_time">Time*</string>
+    <string name="time_hint">Select time</string>
 </resources>

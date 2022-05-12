@@ -86,7 +86,8 @@ fun SettingsScreen(
             Box(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(bottom = 72.dp), contentAlignment = Alignment.Center
+                    .padding(bottom = 72.dp),
+                contentAlignment = Alignment.Center
             ) {
                 OrangeDotProgressBar()
             }

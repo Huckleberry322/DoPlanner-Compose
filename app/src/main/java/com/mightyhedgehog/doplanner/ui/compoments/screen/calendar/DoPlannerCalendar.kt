@@ -25,6 +25,7 @@ import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.R
 import com.mightyhedgehog.doplanner.domain.model.task.Priority
 import com.mightyhedgehog.doplanner.domain.model.task.Task
+import com.mightyhedgehog.doplanner.ext.noRippleClickable
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 import io.github.boguszpawlowski.composecalendar.SelectableCalendar
 import io.github.boguszpawlowski.composecalendar.day.DayState
@@ -83,7 +84,7 @@ fun DoPlannerCalendarPreview() {
                 CalendarDayContent(
                     dayState = dayState,
                     task = Task(
-                        id = 0,
+                        id = "",
                         name = "",
                         description = null,
                         date = LocalDateTime.now(),
@@ -128,15 +129,11 @@ private fun CalendarDayContent(dayState: DayState<DynamicSelectionState>, task: 
             .padding(5.dp)
             .fillMaxWidth()
             .height(41.dp)
-            .clickable(
-                interactionSource = interactionSource,
-                indication = null,
-                onClick = {
-                    if (!selectionState.isDateSelected(date)) {
-                        selectionState.onDateSelected(date)
-                    }
+            .noRippleClickable {
+                if (!selectionState.isDateSelected(date)) {
+                    selectionState.onDateSelected(date)
                 }
-            ),
+            },
         shape = RoundedCornerShape(DoPlannerTheme.shapes.calendarButtonShape),
         border = BorderStroke(1.dp, contentBorderColor),
         backgroundColor = if (dayState.isCurrentDay) DoPlannerTheme.colors.secondaryColor

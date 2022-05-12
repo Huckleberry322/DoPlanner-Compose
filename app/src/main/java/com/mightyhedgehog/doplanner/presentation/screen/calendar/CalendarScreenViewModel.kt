@@ -13,7 +13,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CalendarScreenViewModel @Inject constructor(
-    private val getTasksUseCase: GetTasksUseCase
+    private val getTasksUseCase: GetTasksUseCase,
+    calendarUpdateHandler: CalendarUpdateHandler,
 ) : StatefulViewModel<CalendarScreenViewModel.Event>() {
 
     private val _currentState: MutableLiveData<State> =
@@ -21,6 +22,11 @@ class CalendarScreenViewModel @Inject constructor(
     val currentState: LiveData<State> = _currentState
 
     init {
+        initCalendarViewModel()
+        calendarUpdateHandler.data.safeObserve { initCalendarViewModel() }
+    }
+
+    private fun initCalendarViewModel() {
         viewModelScope.launch {
             val taskList = getTasksUseCase.execute()
 

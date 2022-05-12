@@ -68,17 +68,20 @@ fun DoPlannerBasicTextFieldWithDoneIme(
 @Composable
 fun DoPlannerBasicFieldField(
     modifier: Modifier = Modifier,
+    text: String,
+    onValueChanged:(String) -> Unit,
     paddingTop: Dp,
     dividerThickness: Dp,
     hintRes: Int,
-) {
-    var currentText by remember { mutableStateOf("") }
+    readOnly: Boolean = false,
+    ) {
 
     Column {
         BasicTextField(
             modifier = modifier.padding(top = paddingTop),
-            value = currentText,
-            onValueChange = { currentText = it },
+            readOnly = readOnly,
+            value = text,
+            onValueChange = onValueChanged,
             singleLine = true,
             decorationBox = { innerTextField ->
                 Box(
@@ -86,7 +89,7 @@ fun DoPlannerBasicFieldField(
                         .fillMaxWidth(),
                     contentAlignment = Alignment.CenterStart,
                 ) {
-                    if (currentText.isEmpty()) {
+                    if (text.isEmpty()) {
                         Text(
                             text = stringResource(id = hintRes),
                             color = DoPlannerTheme.colors.black.copy(alpha = 0.2F),

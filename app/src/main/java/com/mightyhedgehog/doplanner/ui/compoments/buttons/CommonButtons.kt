@@ -65,21 +65,32 @@ fun NavigationButtonPreview() {
 fun DoPlannerBasicButton(
     modifier: Modifier = Modifier,
     onClick: () -> Unit,
-    textRes: Int
+    textRes: Int,
+    enabled: Boolean = true,
 ) {
+    val color = if (enabled) {
+        DoPlannerTheme.colors.mainColor
+    } else {
+        DoPlannerTheme.colors.black.copy(alpha = 0.2F)
+    }
+
     OutlinedButton(
         modifier = modifier,
         colors = ButtonDefaults.outlinedButtonColors(backgroundColor = Color.Transparent),
         onClick = onClick,
-        border = BorderStroke(1.dp, DoPlannerTheme.colors.mainColor),
+        border = BorderStroke(
+            width = 1.5.dp,
+            color = color
+        ),
         contentPadding = PaddingValues(8.dp),
-        shape = RoundedCornerShape(14.dp)
+        shape = RoundedCornerShape(14.dp),
+        enabled = enabled
     ) {
         Text(
             modifier = Modifier.padding(start = 8.dp, end = 8.dp),
             text = stringResource(id = textRes),
             style = DoPlannerTheme.typography.dailyTitlesStyle,
-            color = DoPlannerTheme.colors.mainColor
+            color = color
         )
     }
 }

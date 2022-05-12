@@ -19,9 +19,14 @@ import com.mightyhedgehog.doplanner.domain.model.task.Priority
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable
-fun PriorityRadioButtons(modifier: Modifier = Modifier) {
+fun PriorityRadioButtons(
+    modifier: Modifier = Modifier,
+    initValue: Priority,
+    onValueChanged: (Priority) -> Unit,
+) {
     val priorityOptions = Priority.values()
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(priorityOptions[2]) }
+    val initIndex = priorityOptions.indexOf(initValue)
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(priorityOptions[initIndex]) }
 
     Row(modifier = modifier) {
         priorityOptions.forEach { item ->
@@ -33,7 +38,10 @@ fun PriorityRadioButtons(modifier: Modifier = Modifier) {
 
                 RadioButton(
                     selected = (item == selectedOption),
-                    onClick = { onOptionSelected(item) },
+                    onClick = {
+                        onOptionSelected(item)
+                        onValueChanged(item)
+                    },
                     colors = RadioButtonDefaults.colors(
                         selectedColor = when (item) {
                             Priority.HIGH -> DoPlannerTheme.colors.taskPriorityHigh
@@ -56,6 +64,7 @@ fun PriorityRadioButtons(modifier: Modifier = Modifier) {
                     },
                     onClick = {
                         onOptionSelected(item)
+                        onValueChanged(item)
                     },
                     style = DoPlannerTheme.typography.dailyTitlesStyle,
                 )
