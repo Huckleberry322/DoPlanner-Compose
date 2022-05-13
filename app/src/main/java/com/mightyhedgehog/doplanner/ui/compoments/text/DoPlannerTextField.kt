@@ -74,8 +74,9 @@ fun DoPlannerBasicFieldField(
     dividerThickness: Dp,
     hintRes: Int,
     readOnly: Boolean = false,
+    keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
+    keyboardActions: KeyboardActions = KeyboardActions.Default,
     ) {
-
     Column {
         BasicTextField(
             modifier = modifier.padding(top = paddingTop),
@@ -83,6 +84,8 @@ fun DoPlannerBasicFieldField(
             value = text,
             onValueChange = onValueChanged,
             singleLine = true,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
             decorationBox = { innerTextField ->
                 Box(
                     modifier = Modifier

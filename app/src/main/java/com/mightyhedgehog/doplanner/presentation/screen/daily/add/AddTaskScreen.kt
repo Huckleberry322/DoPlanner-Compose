@@ -3,13 +3,20 @@ package com.mightyhedgehog.doplanner.presentation.screen.daily.add
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusDirection
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.mightyhedgehog.doplanner.R
@@ -22,6 +29,7 @@ import com.mightyhedgehog.doplanner.ui.compoments.screen.daily.UserImage
 import com.mightyhedgehog.doplanner.ui.compoments.text.DoPlannerBasicFieldField
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
+@OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun AddTaskScreen(
     vm: AddTaskScreenViewModel,
@@ -38,6 +46,9 @@ fun AddTaskScreen(
                     .verticalScroll(rememberScrollState())
             ) {
                 Column(modifier = Modifier.weight(1F)) {
+                    val kc = LocalSoftwareKeyboardController.current
+                    val focusManager = LocalFocusManager.current
+
                     Row(
                         modifier = Modifier
                             .fillMaxWidth()
@@ -75,6 +86,12 @@ fun AddTaskScreen(
                         paddingTop = 16.dp,
                         dividerThickness = 0.5.dp,
                         hintRes = R.string.title_hint,
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Next),
+                        keyboardActions = KeyboardActions(
+                            onNext = {
+                                focusManager.moveFocus(FocusDirection.Down)
+                            }
+                        )
                     )
                     AddDescription(
                         modifier = Modifier.padding(top = 16.dp, start = 16.dp),
@@ -89,6 +106,13 @@ fun AddTaskScreen(
                         paddingTop = 16.dp,
                         dividerThickness = 0.5.dp,
                         hintRes = R.string.description_hint,
+                        keyboardOptions = KeyboardOptions(imeAction = ImeAction.Done),
+                        keyboardActions = KeyboardActions(
+                            onDone = {
+                                kc?.hide()
+                                focusManager.clearFocus()
+                            }
+                        )
                     )
                     AddDescription(
                         modifier = Modifier.padding(top = 16.dp, start = 16.dp),
