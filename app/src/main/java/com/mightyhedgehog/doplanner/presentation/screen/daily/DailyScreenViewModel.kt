@@ -6,8 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.mightyhedgehog.doplanner.app.core.StatefulViewModel
 import com.mightyhedgehog.doplanner.domain.model.task.Task
 import com.mightyhedgehog.doplanner.domain.model.user.User
-import com.mightyhedgehog.doplanner.domain.usecase.task.GetCompletedTasksUseCase
-import com.mightyhedgehog.doplanner.domain.usecase.task.GetTasksUseCase
+import com.mightyhedgehog.doplanner.domain.usecase.task.*
 import com.mightyhedgehog.doplanner.domain.usecase.user.GetUserUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -18,6 +17,9 @@ import javax.inject.Inject
 class DailyScreenViewModel @Inject constructor(
     private val getTasksUseCase: GetTasksUseCase,
     private val getCompletedTasksUseCase: GetCompletedTasksUseCase,
+    private val completeTaskUseCase: CompleteTaskUseCase,
+    private val deleteTaskUseCase: DeleteTaskUseCase,
+    private val deleteCompletedTaskUseCase: DeleteCompletedTaskUseCase,
     private val getUserUseCase: GetUserUseCase,
     dailyUpdateHandler: DailyUpdateHandler,
 ) : StatefulViewModel<DailyScreenViewModel.Event>() {
@@ -27,14 +29,16 @@ class DailyScreenViewModel @Inject constructor(
     val currentState: LiveData<State> = _currentState
 
     init {
-        initDailyViewModel()
-        dailyUpdateHandler.data.safeObserve { initDailyViewModel() }
+        fetchTasksData()
+        dailyUpdateHandler.data.safeObserve { fetchTasksData() }
     }
 
-    private fun initDailyViewModel() {
+    private fun fetchTasksData() {
         viewModelScope.launch {
-            val taskList = getTasksUseCase.execute()
-            val completedTaskList = getCompletedTasksUseCase.execute()
+            _currentState.postValue(State.Loading)
+
+            val taskList = getTasksUseCase.execute().reversed()
+            val completedTaskList = getCompletedTasksUseCase.execute().reversed()
             val user = getUserUseCase.execute()
             val todayTaskList = taskList.mapNotNull {
                 if (it.date.toLocalDate()
@@ -66,9 +70,33 @@ class DailyScreenViewModel @Inject constructor(
         object Loading : State()
     }
 
-    sealed class Event
+    sealed class Event {
+        data class CompleteTask(val task: Task) : Event()
+        data class DeleteTask(val task: Task) : Event()
+
+        data class DeleteCompletedTask(val task: Task) : Event()
+    }
 
     override fun onEvent(event: Event) {
+        when (val currentState = _currentState.value) {
+            is State.Display -> reduce(event, currentState)
+        }
+    }
 
+    private fun reduce(event: Event, currentState: State.Display) {
+        when (event) {
+            is Event.CompleteTask -> viewModelScope.launch {
+                completeTaskUseCase.execute(event.task)
+                fetchTasksData()
+            }
+            is Event.DeleteCompletedTask -> viewModelScope.launch {
+                deleteCompletedTaskUseCase.execute(event.task)
+                fetchTasksData()
+            }
+            is Event.DeleteTask -> viewModelScope.launch {
+                deleteTaskUseCase.execute(event.task)
+                fetchTasksData()
+            }
+        }
     }
 }

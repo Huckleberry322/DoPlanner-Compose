@@ -22,6 +22,7 @@ import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 fun DailyScreen(vm: DailyScreenViewModel, navController: NavHostController) {
     val viewState = vm.currentState.observeAsState()
     var rowsVisibility by remember { mutableStateOf(false) }
+
     when (val state = viewState.value) {
         is DailyScreenViewModel.State.Display -> {
             Column(
@@ -39,21 +40,34 @@ fun DailyScreen(vm: DailyScreenViewModel, navController: NavHostController) {
                     modifier = Modifier.padding(start = 16.dp, top = 20.dp, bottom = 16.dp)
                 )
                 AnimatedVisibility(visible = rowsVisibility) {
-                    TodayTasksLazyRow(tasksList = state.dailyTasks)
+                    TodayTasksLazyRow(
+                        tasksList = state.dailyTasks,
+                        completeTask = { vm.onEvent(DailyScreenViewModel.Event.CompleteTask(it)) },
+                        deleteTask = { vm.onEvent(DailyScreenViewModel.Event.DeleteTask(it)) },
+                    )
                 }
                 AllTasksTitle(
                     count = state.tasks.size,
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
                 )
                 AnimatedVisibility(visible = rowsVisibility) {
-                    ToDoLazyRow(tasksList = state.tasks)
+                    ToDoLazyRow(
+                        tasksList = state.tasks,
+                        completeTask = { vm.onEvent(DailyScreenViewModel.Event.CompleteTask(it)) },
+                        deleteTask = { vm.onEvent(DailyScreenViewModel.Event.DeleteTask(it)) },
+                    )
                 }
                 CompletedTasksTitle(
                     count = state.completedTasks.size,
                     modifier = Modifier.padding(start = 16.dp, top = 16.dp, bottom = 16.dp)
                 )
                 AnimatedVisibility(visible = rowsVisibility) {
-                    CompletedLazyRow(tasksList = state.completedTasks)
+                    CompletedLazyRow(
+                        tasksList = state.completedTasks,
+                        deleteCompletedTask = {
+                            vm.onEvent(DailyScreenViewModel.Event.DeleteCompletedTask(it))
+                        },
+                    )
                 }
                 rowsVisibility = true
             }

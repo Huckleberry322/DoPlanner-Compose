@@ -87,4 +87,9 @@ val doPlannerTypography = DoPlannerTypography(
         fontSize = 25.sp,
         fontWeight = FontWeight.Light
     ),
+    dialogStyle = TextStyle(
+        fontFamily = fonts,
+        fontSize = 20.sp,
+        fontWeight = FontWeight.Light
+    )
 )

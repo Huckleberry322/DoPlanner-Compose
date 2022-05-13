@@ -16,6 +16,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.R
@@ -67,9 +68,18 @@ fun DoPlannerBasicButton(
     onClick: () -> Unit,
     textRes: Int,
     enabled: Boolean = true,
+    buttonColor: Color = DoPlannerTheme.colors.mainColor,
+    buttonTextColor: Color = DoPlannerTheme.colors.mainColor,
+    buttonTextStyle: TextStyle = DoPlannerTheme.typography.dailyTitlesStyle,
 ) {
-    val color = if (enabled) {
-        DoPlannerTheme.colors.mainColor
+    val borderColor = if (enabled) {
+        buttonColor
+    } else {
+        DoPlannerTheme.colors.black.copy(alpha = 0.2F)
+    }
+
+    val textColor = if (enabled) {
+        buttonTextColor
     } else {
         DoPlannerTheme.colors.black.copy(alpha = 0.2F)
     }
@@ -80,17 +90,17 @@ fun DoPlannerBasicButton(
         onClick = onClick,
         border = BorderStroke(
             width = 1.5.dp,
-            color = color
+            color = borderColor
         ),
         contentPadding = PaddingValues(8.dp),
         shape = RoundedCornerShape(14.dp),
-        enabled = enabled
+        enabled = enabled,
     ) {
         Text(
             modifier = Modifier.padding(start = 8.dp, end = 8.dp),
             text = stringResource(id = textRes),
-            style = DoPlannerTheme.typography.dailyTitlesStyle,
-            color = color
+            style = buttonTextStyle,
+            color = textColor,
         )
     }
 }
