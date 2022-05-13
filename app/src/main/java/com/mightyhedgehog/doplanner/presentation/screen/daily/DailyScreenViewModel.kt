@@ -37,8 +37,8 @@ class DailyScreenViewModel @Inject constructor(
         viewModelScope.launch {
             _currentState.postValue(State.Loading)
 
-            val taskList = getTasksUseCase.execute()
-            val completedTaskList = getCompletedTasksUseCase.execute()
+            val taskList = getTasksUseCase.execute().reversed()
+            val completedTaskList = getCompletedTasksUseCase.execute().reversed()
             val user = getUserUseCase.execute()
             val todayTaskList = taskList.mapNotNull {
                 if (it.date.toLocalDate()

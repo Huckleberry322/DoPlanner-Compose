@@ -1,6 +1,7 @@
 package com.mightyhedgehog.doplanner.ui.compoments.screen.daily
 
 import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Shape
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
@@ -26,12 +28,12 @@ import com.mightyhedgehog.doplanner.domain.model.task.Task
 import com.mightyhedgehog.doplanner.ext.toString
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun TodayTaskCard(
     modifier: Modifier = Modifier,
     task: Task,
     onClick: () -> Unit,
-    onLongClick: () -> Unit,
 ) {
     RippleCard(
         modifier = modifier
@@ -158,7 +160,6 @@ fun AllTaskCard(
     modifier: Modifier = Modifier,
     task: Task,
     onClick: () -> Unit,
-    onLongClick: () -> Unit,
 ) {
     RippleCard(
         modifier = modifier
