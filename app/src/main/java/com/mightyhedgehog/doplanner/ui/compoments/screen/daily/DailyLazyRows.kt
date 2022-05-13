@@ -6,22 +6,33 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.R
 import com.mightyhedgehog.doplanner.domain.model.task.Task
+import com.mightyhedgehog.doplanner.presentation.dialog.SimpleDoPlannerChoseDialog
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable
-fun TodayTasksLazyRow(tasksList: List<Task>) {
+fun TodayTasksLazyRow(
+    tasksList: List<Task>,
+    completeTask: (Task) -> Unit,
+    deleteTask: (Task) -> Unit,
+) {
     LazyRow(
         contentPadding = PaddingValues(start = 12.dp, end = 12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         if (tasksList.isNotEmpty()) {
             items(items = tasksList) { task ->
-                TodayTaskCard(task = task, modifier = Modifier)
+
+                TodayTaskCard(
+                    task = task,
+                    onClick = { completeTask(task) },
+                    onLongClick = { deleteTask(task) }
+                )
             }
         } else {
             item {
@@ -35,14 +46,22 @@ fun TodayTasksLazyRow(tasksList: List<Task>) {
 }
 
 @Composable
-fun ToDoLazyRow(tasksList: List<Task>) {
+fun ToDoLazyRow(
+    tasksList: List<Task>,
+    completeTask: (Task) -> Unit,
+    deleteTask: (Task) -> Unit,
+) {
     LazyRow(
         contentPadding = PaddingValues(start = 12.dp, end = 12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         if (tasksList.isNotEmpty()) {
             items(items = tasksList) { task ->
-                AllTaskCard(task = task, modifier = Modifier)
+                AllTaskCard(
+                    task = task,
+                    onClick = { completeTask(task) },
+                    onLongClick = { deleteTask(task) },
+                )
             }
         } else {
             item {
@@ -56,14 +75,20 @@ fun ToDoLazyRow(tasksList: List<Task>) {
 }
 
 @Composable
-fun CompletedLazyRow(tasksList: List<Task>) {
+fun CompletedLazyRow(
+    tasksList: List<Task>,
+    deleteCompletedTask: (Task) -> Unit,
+) {
     LazyRow(
         contentPadding = PaddingValues(start = 12.dp, end = 12.dp),
         horizontalArrangement = Arrangement.spacedBy(12.dp),
     ) {
         if (tasksList.isNotEmpty()) {
             items(items = tasksList) { task ->
-                CompletedTaskCard(task = task, modifier = Modifier)
+                CompletedTaskCard(
+                    task = task,
+                    onClick = { deleteCompletedTask(task) },
+                )
             }
         } else {
             item {

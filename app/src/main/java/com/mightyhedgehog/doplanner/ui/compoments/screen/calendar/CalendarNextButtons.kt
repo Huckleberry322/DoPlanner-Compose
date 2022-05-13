@@ -4,9 +4,7 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.ExperimentalMaterialApi
-import androidx.compose.material.Icon
+import androidx.compose.material.*
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -15,19 +13,20 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.R
+import com.mightyhedgehog.doplanner.ui.compoments.screen.daily.RippleCard
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun NextMonthButton(onClick: () -> Unit) {
-    Card(
+    RippleCard(
         shape = RoundedCornerShape(DoPlannerTheme.shapes.calendarButtonShape),
         modifier = Modifier.size(35.dp),
-        backgroundColor = DoPlannerTheme.colors.white,
+        color =  DoPlannerTheme.colors.white,
         onClick = onClick,
-        elevation = 7.dp
+        elevation = ButtonDefaults.elevation(7.dp)
     ) {
-        Box(modifier = Modifier.fillMaxSize(0.4F), contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_next),
                 tint = DoPlannerTheme.colors.black.copy(alpha = 0.9F),
@@ -40,14 +39,14 @@ fun NextMonthButton(onClick: () -> Unit) {
 @OptIn(ExperimentalMaterialApi::class)
 @Composable
 fun PreviousMonthButton(onClick: () -> Unit) {
-    Card(
-        modifier = Modifier.size(35.dp),
-        backgroundColor = Color.White,
+    RippleCard(
         shape = RoundedCornerShape(DoPlannerTheme.shapes.calendarButtonShape),
+        modifier = Modifier.size(35.dp),
+        color = DoPlannerTheme.colors.white,
         onClick = onClick,
-        elevation = 7.dp
+        elevation = ButtonDefaults.elevation(7.dp)
     ) {
-        Box(modifier = Modifier.fillMaxSize(0.4F), contentAlignment = Alignment.Center) {
+        Box(modifier = Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
             Icon(
                 painter = painterResource(id = R.drawable.ic_previous),
                 tint = DoPlannerTheme.colors.black.copy(alpha = 0.9F),

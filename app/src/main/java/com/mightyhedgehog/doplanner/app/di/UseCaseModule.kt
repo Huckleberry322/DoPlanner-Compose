@@ -33,6 +33,11 @@ object UseCaseModule {
     }
 
     @Provides
+    fun provideDeleteCompletedTaskUseCase(completedTaskStorage: CompletedTaskStorage): DeleteCompletedTaskUseCase {
+        return DeleteCompletedTaskUseCase(completedTaskStorage = completedTaskStorage)
+    }
+
+    @Provides
     fun provideCompleteTaskUseCase(
         taskStorage: TaskStorage, completedTaskStorage: CompletedTaskStorage
     ): CompleteTaskUseCase {

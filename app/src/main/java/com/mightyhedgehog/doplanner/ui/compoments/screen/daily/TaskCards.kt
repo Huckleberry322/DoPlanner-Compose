@@ -1,17 +1,21 @@
 package com.mightyhedgehog.doplanner.ui.compoments.screen.daily
 
-import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
+import androidx.compose.foundation.*
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material.Card
-import androidx.compose.material.Text
+import androidx.compose.material.*
+import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.Shape
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -23,18 +27,23 @@ import com.mightyhedgehog.doplanner.ext.toString
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable
-fun TodayTaskCard(task: Task, modifier: Modifier) {
-    Card(
+fun TodayTaskCard(
+    modifier: Modifier = Modifier,
+    task: Task,
+    onClick: () -> Unit,
+    onLongClick: () -> Unit,
+) {
+    RippleCard(
         modifier = modifier
             .width(200.dp)
-            .height(250.dp),
-        elevation = 0.dp,
-        shape = RoundedCornerShape(DoPlannerTheme.shapes.standardCardShape),
-        backgroundColor = when (task.priority) {
+            .height(250.dp)
+            .clip(RoundedCornerShape(DoPlannerTheme.shapes.standardCardShape)),
+        color = when (task.priority) {
             Priority.HIGH -> DoPlannerTheme.colors.taskCardRed
             Priority.MEDIUM -> DoPlannerTheme.colors.taskCardBlue
             Priority.LOW -> DoPlannerTheme.colors.taskCardPurple
-        }
+        },
+        onClick = onClick,
     ) {
         Column(
             modifier = Modifier.padding(18.dp),
@@ -145,18 +154,24 @@ fun TaskCardPreview() {
 }
 
 @Composable
-fun AllTaskCard(task: Task, modifier: Modifier) {
-    Card(
+fun AllTaskCard(
+    modifier: Modifier = Modifier,
+    task: Task,
+    onClick: () -> Unit,
+    onLongClick: () -> Unit,
+) {
+    RippleCard(
         modifier = modifier
             .width(120.dp)
-            .height(130.dp),
-        elevation = 0.dp,
-        shape = RoundedCornerShape(DoPlannerTheme.shapes.standardCardShape),
-        backgroundColor = when (task.priority) {
+            .height(130.dp)
+            .clip(RoundedCornerShape(DoPlannerTheme.shapes.standardCardShape))
+            .clickable { },
+        color = when (task.priority) {
             Priority.HIGH -> DoPlannerTheme.colors.taskCardRed
             Priority.MEDIUM -> DoPlannerTheme.colors.taskCardBlue
             Priority.LOW -> DoPlannerTheme.colors.taskCardPurple
-        }
+        },
+        onClick = onClick,
     ) {
         Column(
             modifier = Modifier.padding(12.dp),
@@ -246,7 +261,10 @@ fun AllTaskCardPreview() {
 }
 
 @Composable
-fun CalendarTaskCard(task: Task, modifier: Modifier = Modifier) {
+fun CalendarTaskCard(
+    modifier: Modifier = Modifier,
+    task: Task,
+) {
     Row(
         modifier = modifier
             .fillMaxWidth()
@@ -352,18 +370,22 @@ fun CalendarTaskCardPreview() {
 }
 
 @Composable
-fun CompletedTaskCard(task: Task, modifier: Modifier) {
-    Card(
+fun CompletedTaskCard(
+    modifier: Modifier = Modifier,
+    task: Task,
+    onClick: () -> Unit,
+) {
+    RippleCard(
         modifier = modifier
             .width(120.dp)
-            .height(130.dp),
-        elevation = 0.dp,
-        shape = RoundedCornerShape(DoPlannerTheme.shapes.standardCardShape),
-        backgroundColor = when (task.priority) {
+            .height(130.dp)
+            .clip(RoundedCornerShape(DoPlannerTheme.shapes.standardCardShape)),
+        color = when (task.priority) {
             Priority.HIGH -> DoPlannerTheme.colors.taskCardRed
             Priority.MEDIUM -> DoPlannerTheme.colors.taskCardBlue
             Priority.LOW -> DoPlannerTheme.colors.taskCardPurple
-        }
+        },
+        onClick = onClick
     ) {
         Column(
             modifier = Modifier.padding(12.dp),
@@ -408,7 +430,9 @@ fun CompletedTaskCard(task: Task, modifier: Modifier) {
                 .background(DoPlannerTheme.colors.greenBackground.copy(alpha = 0.3F))
         ) {
             Image(
-                modifier = Modifier.fillMaxSize().padding(14.dp),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(14.dp),
                 painter = painterResource(id = R.drawable.ic_complete),
                 contentDescription = null
             )
@@ -465,11 +489,47 @@ fun CompletedTaskCardPreview() {
                     .background(DoPlannerTheme.colors.greenBackground.copy(alpha = 0.3F))
             ) {
                 Image(
-                    modifier = Modifier.fillMaxSize().padding(14.dp),
+                    modifier = Modifier
+                        .fillMaxSize()
+                        .padding(14.dp),
                     painter = painterResource(id = R.drawable.ic_complete),
                     contentDescription = null
                 )
             }
         }
+    }
+}
+
+@OptIn(ExperimentalMaterialApi::class)
+@Composable
+fun RippleCard(
+    onClick: () -> Unit,
+    modifier: Modifier = Modifier,
+    enabled: Boolean = true,
+    interactionSource: MutableInteractionSource = remember { MutableInteractionSource() },
+    elevation: ButtonElevation? = ButtonDefaults.elevation(0.dp),
+    shape: Shape = MaterialTheme.shapes.medium,
+    border: BorderStroke? = null,
+    color: Color,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+    content: @Composable () -> Unit
+) {
+    Surface(
+        modifier = modifier,
+        shape = shape,
+        border = border,
+        elevation = elevation?.elevation(enabled, interactionSource)?.value ?: 0.dp,
+        onClick = onClick,
+        enabled = enabled,
+        role = Role.Button,
+        interactionSource = interactionSource,
+        indication = rememberRipple()
+    ) {
+        Surface(
+            modifier = Modifier
+                .padding(contentPadding),
+            content = content,
+            color = color
+        )
     }
 }

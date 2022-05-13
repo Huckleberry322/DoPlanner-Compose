@@ -43,6 +43,7 @@ data class DoPlannerTypography(
     val calendarCardTime: TextStyle,
     val calendarEmptyList: TextStyle,
     val settingsTitleStyle: TextStyle,
+    val dialogStyle: TextStyle,
 )
 
 @Immutable
