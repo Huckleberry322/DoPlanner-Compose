@@ -512,7 +512,7 @@ fun RippleCard(
     border: BorderStroke? = null,
     color: Color,
     contentPadding: PaddingValues = PaddingValues(0.dp),
-    content: @Composable () -> Unit
+    content: @Composable () -> Unit,
 ) {
     Surface(
         modifier = modifier,
@@ -521,7 +521,6 @@ fun RippleCard(
         elevation = elevation?.elevation(enabled, interactionSource)?.value ?: 0.dp,
         onClick = onClick,
         enabled = enabled,
-        role = Role.Button,
         interactionSource = interactionSource,
         indication = rememberRipple()
     ) {

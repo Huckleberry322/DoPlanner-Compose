@@ -35,6 +35,8 @@ class DailyScreenViewModel @Inject constructor(
 
     private fun fetchTasksData() {
         viewModelScope.launch {
+            _currentState.postValue(State.Loading)
+
             val taskList = getTasksUseCase.execute()
             val completedTaskList = getCompletedTasksUseCase.execute()
             val user = getUserUseCase.execute()

@@ -96,7 +96,6 @@ class AddTaskScreenViewModel @Inject constructor(
                     dailyUpdateHandler.update(Unit)
                     calendarUpdateHandler.update(Unit)
 
-                    delay(800)
                     _currentState.postValue(State.Success)
                 }
             }
