@@ -70,5 +70,4 @@ fun OrangeDotProgressBar(
             )
         }
     }
-
 }

@@ -1,4 +1,4 @@
-package com.mightyhedgehog.doplanner.ui.compoments.bars.bottombar
+package com.mightyhedgehog.doplanner.app.navigation
 
 import com.mightyhedgehog.doplanner.R
 import com.mightyhedgehog.doplanner.app.navigation.graph.DAILY_SCREEN_NESTED_GRAPH

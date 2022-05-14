@@ -1,7 +1,8 @@
 package com.mightyhedgehog.doplanner.ui.compoments.buttons
 
-import androidx.compose.animation.*
-import androidx.compose.animation.core.tween
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.FloatingActionButton
 import androidx.compose.material.Icon
@@ -9,9 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.MutableState
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.navigation.NavController
 import com.mightyhedgehog.doplanner.R
-import com.mightyhedgehog.doplanner.app.navigation.Screens
 import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
 
 @Composable

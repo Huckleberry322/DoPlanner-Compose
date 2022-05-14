@@ -1,7 +1,5 @@
 package com.mightyhedgehog.doplanner.presentation.screen.settings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.mightyhedgehog.doplanner.app.core.BaseViewModel
 import com.mightyhedgehog.doplanner.data.local.datastore.ThemeDataStore

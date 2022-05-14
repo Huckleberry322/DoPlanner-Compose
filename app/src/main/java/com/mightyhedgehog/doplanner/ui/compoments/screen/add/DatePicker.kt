@@ -2,7 +2,6 @@ package com.mightyhedgehog.doplanner.ui.compoments.screen.add
 
 import android.app.DatePickerDialog
 import android.app.TimePickerDialog
-import android.util.Log
 import android.widget.DatePicker
 import android.widget.TimePicker
 import androidx.compose.foundation.layout.Column
