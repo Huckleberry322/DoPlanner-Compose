@@ -27,6 +27,10 @@ class SettingsScreenViewModel @Inject constructor(
     val currentState: LiveData<State> = _currentState
 
     init {
+        fetchUserData()
+    }
+
+    private fun fetchUserData() {
         viewModelScope.launch {
             val user = getUserUseCase.execute()
 
@@ -38,6 +42,7 @@ class SettingsScreenViewModel @Inject constructor(
 
     sealed class Event {
         data class UserNameChanged(val name: String) : Event()
+        data class ColorSchemeChanged(val scheme: DoPlannerStyle) : Event()
     }
 
     sealed class State {
@@ -73,12 +78,9 @@ class SettingsScreenViewModel @Inject constructor(
                     dailyUpdateHandler.update(Unit)
                 }
             }
-        }
-    }
-
-    fun changeSchemeClicked(style: DoPlannerStyle) {
-        viewModelScope.launch {
-            themeDataStore.saveStyle(style.name)
+            is Event.ColorSchemeChanged -> viewModelScope.launch {
+                themeDataStore.saveStyle(event.scheme.name)
+            }
         }
     }
 }

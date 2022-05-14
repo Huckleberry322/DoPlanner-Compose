@@ -1,8 +1,8 @@
-package com.mightyhedgehog.doplanner.presentation.handler
+package com.mightyhedgehog.doplanner.app.core
 
 import androidx.lifecycle.LiveData
 
-interface SimpleHandler<T> {
+interface UpdateHandler<T> {
 
     val data: LiveData<T>
 
