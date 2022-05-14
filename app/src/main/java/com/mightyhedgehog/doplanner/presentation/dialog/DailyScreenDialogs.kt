@@ -1,22 +1,15 @@
 package com.mightyhedgehog.doplanner.presentation.dialog
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Divider
 import androidx.compose.material.Text
-import com.mightyhedgehog.doplanner.R
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.SpanStyle
-import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import com.mightyhedgehog.doplanner.ui.compoments.buttons.DoPlannerBasicButton
@@ -135,7 +128,7 @@ fun SimpleDoPlannerChoseDialogWithOption(
                         onClick = { option() },
                         textRes = optionAnswerRes,
                         buttonColor = Color.Transparent,
-                        buttonTextColor = DoPlannerTheme.colors.redBackground,
+                        buttonTextColor = DoPlannerTheme.colors.red,
                         buttonTextStyle = DoPlannerTheme.typography.dialogStyle
                     )
                 }

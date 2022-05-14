@@ -6,6 +6,7 @@ import com.mightyhedgehog.doplanner.domain.model.task.Task
 import com.mightyhedgehog.doplanner.domain.model.user.User
 import com.mightyhedgehog.doplanner.domain.usecase.task.*
 import com.mightyhedgehog.doplanner.domain.usecase.user.GetUserUseCase
+import com.mightyhedgehog.doplanner.presentation.screen.calendar.CalendarUpdateHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -19,6 +20,7 @@ class DailyScreenViewModel @Inject constructor(
     private val deleteTaskUseCase: DeleteTaskUseCase,
     private val deleteCompletedTaskUseCase: DeleteCompletedTaskUseCase,
     private val getUserUseCase: GetUserUseCase,
+    private val calendarUpdateHandler: CalendarUpdateHandler,
     dailyUpdateHandler: DailyUpdateHandler,
 ) : BaseViewModel<DailyScreenViewModel.State, DailyScreenViewModel.Event>(State.Loading) {
 
@@ -77,14 +79,17 @@ class DailyScreenViewModel @Inject constructor(
         when (event) {
             is Event.CompleteTask -> viewModelScope.launch {
                 completeTaskUseCase.execute(event.task)
+                calendarUpdateHandler.update(Unit)
                 fetchTasksData()
             }
             is Event.DeleteCompletedTask -> viewModelScope.launch {
                 deleteCompletedTaskUseCase.execute(event.task)
+                calendarUpdateHandler.update(Unit)
                 fetchTasksData()
             }
             is Event.DeleteTask -> viewModelScope.launch {
                 deleteTaskUseCase.execute(event.task)
+                calendarUpdateHandler.update(Unit)
                 fetchTasksData()
             }
         }
