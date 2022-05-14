@@ -10,14 +10,14 @@ kapt {
 }
 
 android {
-    compileSdk 31
+    compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.mightyhedgehog.colorapp"
-        minSdk 26
-        targetSdk 31
-        versionCode 1
-        versionName "0.0.7"
+        applicationId = ConfigData.packageName
+        minSdk = ConfigData.minSdkVersion
+        targetSdk = ConfigData.targetSdkVersion
+        versionCode = ConfigData.versionCode
+        versionName = ConfigData.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
