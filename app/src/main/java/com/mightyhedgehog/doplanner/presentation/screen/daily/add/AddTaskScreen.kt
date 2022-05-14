@@ -11,7 +11,7 @@ fun AddTaskScreen(
     vm: AddTaskScreenViewModel,
     navController: NavController
 ) {
-    val viewState = vm.currentState.observeAsState()
+    val viewState = vm.stateData.observeAsState(initial = vm.getDefaultState())
 
     when (val state = viewState.value) {
         is AddTaskScreenViewModel.State.Display -> AddTaskDisplay(
@@ -29,6 +29,5 @@ fun AddTaskScreen(
             vm.onEvent(AddTaskScreenViewModel.Event.SaveTask)
         }
         AddTaskScreenViewModel.State.Success -> navController.popBackStack()
-        null -> throw NotImplementedError("Unexpected settings state")
     }
 }

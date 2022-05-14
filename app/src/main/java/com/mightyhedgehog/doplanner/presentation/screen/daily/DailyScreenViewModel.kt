@@ -1,9 +1,7 @@
 package com.mightyhedgehog.doplanner.presentation.screen.daily
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.mightyhedgehog.doplanner.app.core.StatefulViewModel
+import com.mightyhedgehog.doplanner.app.core.BaseViewModel
 import com.mightyhedgehog.doplanner.domain.model.task.Task
 import com.mightyhedgehog.doplanner.domain.model.user.User
 import com.mightyhedgehog.doplanner.domain.usecase.task.*
@@ -22,11 +20,7 @@ class DailyScreenViewModel @Inject constructor(
     private val deleteCompletedTaskUseCase: DeleteCompletedTaskUseCase,
     private val getUserUseCase: GetUserUseCase,
     dailyUpdateHandler: DailyUpdateHandler,
-) : StatefulViewModel<DailyScreenViewModel.Event>() {
-
-    private val _currentState: MutableLiveData<State> =
-        MutableLiveData(State.Loading)
-    val currentState: LiveData<State> = _currentState
+) : BaseViewModel<DailyScreenViewModel.State, DailyScreenViewModel.Event>(State.Loading) {
 
     init {
         fetchTasksData()
@@ -35,20 +29,16 @@ class DailyScreenViewModel @Inject constructor(
 
     private fun fetchTasksData() {
         viewModelScope.launch {
-            _currentState.postValue(State.Loading)
+            produceState(State.Loading)
 
             val taskList = getTasksUseCase.execute().reversed()
             val completedTaskList = getCompletedTasksUseCase.execute().reversed()
             val user = getUserUseCase.execute()
             val todayTaskList = taskList.mapNotNull {
-                if (it.date.toLocalDate()
-                    == LocalDate.now()
-                ) {
-                    it
-                } else null
+                if (it.date.toLocalDate() == LocalDate.now()) it else null
             }
 
-            _currentState.postValue(
+            produceState(
                 State.Display(
                     user = user,
                     tasks = taskList,
@@ -59,7 +49,7 @@ class DailyScreenViewModel @Inject constructor(
         }
     }
 
-    sealed class State {
+    open class State {
         data class Display(
             val user: User,
             val tasks: List<Task>,
@@ -78,7 +68,7 @@ class DailyScreenViewModel @Inject constructor(
     }
 
     override fun onEvent(event: Event) {
-        when (val currentState = _currentState.value) {
+        when (val currentState = state) {
             is State.Display -> reduce(event, currentState)
         }
     }

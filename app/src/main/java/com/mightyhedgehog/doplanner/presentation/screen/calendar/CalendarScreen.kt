@@ -11,7 +11,7 @@ fun CalendarScreen(
     vm: CalendarScreenViewModel,
     navController: NavHostController
 ) {
-    val viewState = vm.currentState.observeAsState()
+    val viewState = vm.stateData.observeAsState(initial = vm.getDefaultState())
 
     when (val state = viewState.value) {
         is CalendarScreenViewModel.State.Display -> CalendarDisplay(
@@ -19,6 +19,5 @@ fun CalendarScreen(
             onDateSelectionChanged = { vm.onEvent(CalendarScreenViewModel.Event.DateChanged(it)) }
         )
         CalendarScreenViewModel.State.Loading -> LoadingView()
-        null -> throw NotImplementedError("Unexpected calendar state")
     }
 }

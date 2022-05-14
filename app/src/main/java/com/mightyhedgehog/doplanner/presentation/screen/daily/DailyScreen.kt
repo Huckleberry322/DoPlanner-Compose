@@ -8,7 +8,7 @@ import com.mightyhedgehog.doplanner.presentation.views.LoadingView
 
 @Composable
 fun DailyScreen(vm: DailyScreenViewModel, navController: NavHostController) {
-    val viewState = vm.currentState.observeAsState()
+    val viewState = vm.stateData.observeAsState(initial = vm.getDefaultState())
 
     when (val state = viewState.value) {
         is DailyScreenViewModel.State.Display -> DailyDisplay(
@@ -20,6 +20,5 @@ fun DailyScreen(vm: DailyScreenViewModel, navController: NavHostController) {
             onCompleteTaskDelete = { vm.onEvent(DailyScreenViewModel.Event.DeleteCompletedTask(it)) },
         )
         DailyScreenViewModel.State.Loading -> LoadingView()
-        null -> throw NotImplementedError("Unexpected daily state")
     }
 }

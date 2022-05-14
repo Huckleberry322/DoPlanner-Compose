@@ -11,7 +11,7 @@ fun SettingsScreen(
     vm: SettingsScreenViewModel,
     navController: NavHostController,
 ) {
-    val viewState = vm.currentState.observeAsState()
+    val viewState = vm.stateData.observeAsState(initial = vm.getDefaultState())
 
     when (val state = viewState.value) {
         is SettingsScreenViewModel.State.Display -> SettingsDisplay(
@@ -20,6 +20,5 @@ fun SettingsScreen(
             onColorSchemeChanged = { vm.onEvent(SettingsScreenViewModel.Event.ColorSchemeChanged(it)) }
         )
         SettingsScreenViewModel.State.Loading -> LoadingView()
-        null -> throw NotImplementedError("Unexpected settings state")
     }
 }

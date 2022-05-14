@@ -1,9 +1,7 @@
 package com.mightyhedgehog.doplanner.presentation.screen.daily.add
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.mightyhedgehog.doplanner.app.core.StatefulViewModel
+import com.mightyhedgehog.doplanner.app.core.BaseViewModel
 import com.mightyhedgehog.doplanner.domain.model.task.Priority
 import com.mightyhedgehog.doplanner.domain.model.task.Task
 import com.mightyhedgehog.doplanner.domain.usecase.task.AddTaskUseCase
@@ -11,7 +9,6 @@ import com.mightyhedgehog.doplanner.ext.emptyString
 import com.mightyhedgehog.doplanner.presentation.screen.calendar.CalendarUpdateHandler
 import com.mightyhedgehog.doplanner.presentation.screen.daily.DailyUpdateHandler
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -24,11 +21,7 @@ class AddTaskScreenViewModel @Inject constructor(
     private val addTaskUseCase: AddTaskUseCase,
     private val dailyUpdateHandler: DailyUpdateHandler,
     private val calendarUpdateHandler: CalendarUpdateHandler,
-) : StatefulViewModel<AddTaskScreenViewModel.Event>() {
-
-    private val _currentState: MutableLiveData<State> =
-        MutableLiveData(State.Display())
-    val currentState: LiveData<State> = _currentState
+) : BaseViewModel<AddTaskScreenViewModel.State, AddTaskScreenViewModel.Event>(State.Display()) {
 
     sealed class State {
         data class Display(
@@ -58,7 +51,7 @@ class AddTaskScreenViewModel @Inject constructor(
     }
 
     override fun onEvent(event: Event) {
-        when (val currentState = _currentState.value) {
+        when (val currentState = state) {
             is State.Display -> reduce(event, currentState)
             is State.SaveProcess -> reduce(event, currentState)
         }
@@ -66,24 +59,24 @@ class AddTaskScreenViewModel @Inject constructor(
 
     private fun reduce(event: Event, currentState: State.Display) {
         when (event) {
-            is Event.DateChanged -> _currentState.postValue(
+            is Event.DateChanged -> produceState(
                 currentState.copy(date = event.date)
             )
-            is Event.TimeChanged -> _currentState.postValue(
+            is Event.TimeChanged -> produceState(
                 currentState.copy(time = event.time)
             )
-            is Event.DescriptionChanged -> _currentState.postValue(
+            is Event.DescriptionChanged -> produceState(
                 currentState.copy(taskDescription = event.description)
             )
-            is Event.PriorityChanged -> _currentState.postValue(
+            is Event.PriorityChanged -> produceState(
                 currentState.copy(taskPriority = event.priority)
             )
-            is Event.TitleChanged -> _currentState.postValue(
+            is Event.TitleChanged -> produceState(
                 currentState.copy(taskTitle = event.title)
             )
             Event.AddTaskButtonClicked -> {
                 val task = createTaskFromState()
-                _currentState.postValue(State.SaveProcess(task))
+                produceState(State.SaveProcess(task))
             }
         }
     }
@@ -96,14 +89,14 @@ class AddTaskScreenViewModel @Inject constructor(
                     dailyUpdateHandler.update(Unit)
                     calendarUpdateHandler.update(Unit)
 
-                    _currentState.postValue(State.Success)
+                    produceState(State.Success)
                 }
             }
         }
     }
 
     private fun createTaskFromState(): Task {
-        val currentState = currentState.value!! as State.Display
+        val currentState = state as State.Display
         val dateTime = LocalDateTime.of(currentState.date, currentState.time)
 
         return Task(

@@ -1,9 +1,7 @@
 package com.mightyhedgehog.doplanner.presentation.screen.calendar
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.mightyhedgehog.doplanner.app.core.StatefulViewModel
+import com.mightyhedgehog.doplanner.app.core.BaseViewModel
 import com.mightyhedgehog.doplanner.domain.model.task.Task
 import com.mightyhedgehog.doplanner.domain.usecase.task.GetTasksUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,11 +13,7 @@ import javax.inject.Inject
 class CalendarScreenViewModel @Inject constructor(
     private val getTasksUseCase: GetTasksUseCase,
     calendarUpdateHandler: CalendarUpdateHandler,
-) : StatefulViewModel<CalendarScreenViewModel.Event>() {
-
-    private val _currentState: MutableLiveData<State> =
-        MutableLiveData(State.Loading)
-    val currentState: LiveData<State> = _currentState
+) : BaseViewModel<CalendarScreenViewModel.State, CalendarScreenViewModel.Event>(State.Loading) {
 
     init {
         initCalendarViewModel()
@@ -30,7 +24,7 @@ class CalendarScreenViewModel @Inject constructor(
         viewModelScope.launch {
             val taskList = getTasksUseCase.execute()
 
-            _currentState.postValue(
+            produceState(
                 State.Display(
                     taskList = taskList,
                     dayTaskList = getDateTasks(
@@ -57,7 +51,7 @@ class CalendarScreenViewModel @Inject constructor(
     }
 
     override fun onEvent(event: Event) {
-        when (val currentState = _currentState.value) {
+        when (val currentState = state) {
             is State.Display -> reduceEvent(event, currentState)
         }
     }
@@ -65,7 +59,7 @@ class CalendarScreenViewModel @Inject constructor(
     private fun reduceEvent(event: Event, state: State.Display) {
         when (event) {
             is Event.DateChanged -> {
-                _currentState.postValue(
+                produceState(
                     state.copy(
                         currentDate = event.date,
                         dayTaskList = getDateTasks(state.taskList, date = event.date)
