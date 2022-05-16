@@ -17,8 +17,8 @@ fun NavGraphBuilder.toDoGraph(navController: NavHostController) {
         route = CALENDAR_SCREEN_NESTED_GRAPH
     ) {
         composable(route = Screens.CalendarScreen.route) {
-            val vm = hiltViewModel<CalendarScreenViewModel>()
-            CalendarScreen(vm = vm, navController = navController)
+            val viewModel = hiltViewModel<CalendarScreenViewModel>()
+            CalendarScreen(vm = viewModel)
         }
     }
 }

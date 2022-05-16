@@ -16,4 +16,3 @@ fun LocalDate.toString(pattern: String): String = this
 
 fun LocalTime.toString(pattern: String) : String = this
     .format(DateTimeFormatter.ofPattern(pattern))
-

@@ -1,15 +1,13 @@
 package com.mightyhedgehog.doplanner.presentation.screen.settings
 
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.mightyhedgehog.doplanner.app.core.StatefulViewModel
+import com.mightyhedgehog.doplanner.app.core.BaseViewModel
 import com.mightyhedgehog.doplanner.data.local.datastore.ThemeDataStore
-import com.mightyhedgehog.doplanner.domain.model.user.User
-import com.mightyhedgehog.doplanner.domain.usecase.user.GetUserUseCase
-import com.mightyhedgehog.doplanner.domain.usecase.user.SaveUserUseCase
+import com.mightyhedgehog.doplanner.presentation.model.user.User
+import com.mightyhedgehog.doplanner.data.gateway.user.GetUserGateway
+import com.mightyhedgehog.doplanner.data.gateway.user.SaveUserGateway
 import com.mightyhedgehog.doplanner.presentation.screen.daily.DailyUpdateHandler
-import com.mightyhedgehog.doplanner.ui.theme.DoPlannerStyle
+import com.mightyhedgehog.doplanner.presentation.ui.theme.DoPlannerStyle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -17,27 +15,23 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsScreenViewModel @Inject constructor(
     private val themeDataStore: ThemeDataStore,
-    private val getUserUseCase: GetUserUseCase,
-    private val saveUserUseCase: SaveUserUseCase,
+    private val getUserGateway: GetUserGateway,
+    private val saveUserGateway: SaveUserGateway,
     private val dailyUpdateHandler: DailyUpdateHandler,
-) : StatefulViewModel<SettingsScreenViewModel.Event>() {
-
-    private val _currentState: MutableLiveData<State> =
-        MutableLiveData(State.Loading)
-    val currentState: LiveData<State> = _currentState
+) : BaseViewModel<SettingsScreenViewModel.State, SettingsScreenViewModel.Event>(State.Loading) {
 
     init {
-        viewModelScope.launch {
-            val user = getUserUseCase.execute()
+        fetchUserData()
+    }
 
-            _currentState.postValue(
+    private fun fetchUserData() {
+        viewModelScope.launch {
+            val user = getUserGateway.execute()
+
+            produceState(
                 State.Display(user = user)
             )
         }
-    }
-
-    sealed class Event {
-        data class UserNameChanged(val name: String) : Event()
     }
 
     sealed class State {
@@ -48,8 +42,13 @@ class SettingsScreenViewModel @Inject constructor(
         object Loading : State()
     }
 
+    sealed class Event {
+        data class UserNameChanged(val name: String) : Event()
+        data class ColorSchemeChanged(val scheme: DoPlannerStyle) : Event()
+    }
+
     override fun onEvent(event: Event) {
-        when (val currentState = _currentState.value) {
+        when (val currentState = state) {
             is State.Display -> reduceEvent(event, currentState)
         }
     }
@@ -63,22 +62,17 @@ class SettingsScreenViewModel @Inject constructor(
                         name = event.name
                     )
 
-                    _currentState.postValue(
-                        state.copy(
-                            user = newUser
-                        )
+                    produceState(
+                        state.copy(user = newUser)
                     )
 
-                    saveUserUseCase.execute(newUser)
+                    saveUserGateway.execute(newUser)
                     dailyUpdateHandler.update(Unit)
                 }
             }
-        }
-    }
-
-    fun changeSchemeClicked(style: DoPlannerStyle) {
-        viewModelScope.launch {
-            themeDataStore.saveStyle(style.name)
+            is Event.ColorSchemeChanged -> viewModelScope.launch {
+                themeDataStore.saveStyle(event.scheme.name)
+            }
         }
     }
 }

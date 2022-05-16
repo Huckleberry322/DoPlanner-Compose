@@ -3,10 +3,10 @@ package com.mightyhedgehog.doplanner.presentation.screen.main
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.runtime.*
+import androidx.compose.runtime.collectAsState
 import com.mightyhedgehog.doplanner.data.local.datastore.ThemeDataStore
-import com.mightyhedgehog.doplanner.ui.theme.DoPlannerStyle
-import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
+import com.mightyhedgehog.doplanner.presentation.ui.theme.DoPlannerStyle
+import com.mightyhedgehog.doplanner.presentation.ui.theme.DoPlannerTheme
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 

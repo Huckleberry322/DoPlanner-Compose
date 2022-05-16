@@ -10,14 +10,14 @@ kapt {
 }
 
 android {
-    compileSdk 31
+    compileSdk = ConfigData.compileSdkVersion
 
     defaultConfig {
-        applicationId "com.mightyhedgehog.colorapp"
-        minSdk 26
-        targetSdk 31
-        versionCode 1
-        versionName "0.0.7"
+        applicationId = ConfigData.packageName
+        minSdk = ConfigData.minSdkVersion
+        targetSdk = ConfigData.targetSdkVersion
+        versionCode = ConfigData.versionCode
+        versionName = ConfigData.versionName
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -54,21 +54,21 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
+
     implementation "androidx.compose.ui:ui:$compose_version"
     implementation "androidx.compose.material:material:$compose_version"
     implementation("androidx.compose.foundation:foundation:$compose_version")
     implementation "androidx.compose.ui:ui-tooling-preview:$compose_version"
-    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.3.1'
-    implementation 'androidx.compose.runtime:runtime-livedata:1.1.1'
+    implementation "androidx.compose.runtime:runtime-livedata:$compose_version"
+
+    implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.activity:activity-compose:1.4.0'
+
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
     androidTestImplementation "androidx.compose.ui:ui-test-junit4:$compose_version"
     debugImplementation "androidx.compose.ui:ui-tooling:$compose_version"
-
-    //Constraint
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.0.0")
 
     //Navigation
     implementation("androidx.navigation:navigation-compose:2.4.2")
@@ -76,7 +76,7 @@ dependencies {
     //Hilt
     implementation("com.google.dagger:hilt-android:2.40.5")
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
-    kapt("com.google.dagger:hilt-android-compiler:2.38.1")
+    kapt("com.google.dagger:hilt-android-compiler:2.40.5")
 
     //Gson
     implementation("com.google.code.gson:gson:2.8.9")

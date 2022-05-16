@@ -1,8 +1,8 @@
 package com.mightyhedgehog.doplanner.data.mapper.task
 
 import com.mightyhedgehog.doplanner.data.model.task.JsonTask
-import com.mightyhedgehog.doplanner.domain.model.task.Priority
-import com.mightyhedgehog.doplanner.domain.model.task.Task
+import com.mightyhedgehog.doplanner.presentation.model.task.Priority
+import com.mightyhedgehog.doplanner.presentation.model.task.Task
 import com.mightyhedgehog.doplanner.ext.*
 
 private const val PRIORITY_HIGH = "High"

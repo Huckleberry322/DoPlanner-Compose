@@ -1,7 +1,6 @@
 package com.mightyhedgehog.doplanner.app.di
 
 import android.content.Context
-import androidx.datastore.preferences.preferencesDataStore
 import com.mightyhedgehog.doplanner.data.local.datastore.ThemeDataStore
 import com.mightyhedgehog.doplanner.data.local.datastore.themeDataStore
 import com.mightyhedgehog.doplanner.data.local.json.task.CompletedTaskStorage
