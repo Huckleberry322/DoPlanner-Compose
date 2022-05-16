@@ -3,11 +3,11 @@ package com.mightyhedgehog.doplanner.presentation.screen.settings
 import androidx.lifecycle.viewModelScope
 import com.mightyhedgehog.doplanner.app.core.BaseViewModel
 import com.mightyhedgehog.doplanner.data.local.datastore.ThemeDataStore
-import com.mightyhedgehog.doplanner.domain.model.user.User
-import com.mightyhedgehog.doplanner.domain.usecase.user.GetUserUseCase
-import com.mightyhedgehog.doplanner.domain.usecase.user.SaveUserUseCase
+import com.mightyhedgehog.doplanner.presentation.model.user.User
+import com.mightyhedgehog.doplanner.data.gateway.user.GetUserGateway
+import com.mightyhedgehog.doplanner.data.gateway.user.SaveUserGateway
 import com.mightyhedgehog.doplanner.presentation.screen.daily.DailyUpdateHandler
-import com.mightyhedgehog.doplanner.ui.theme.DoPlannerStyle
+import com.mightyhedgehog.doplanner.presentation.ui.theme.DoPlannerStyle
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -15,8 +15,8 @@ import javax.inject.Inject
 @HiltViewModel
 class SettingsScreenViewModel @Inject constructor(
     private val themeDataStore: ThemeDataStore,
-    private val getUserUseCase: GetUserUseCase,
-    private val saveUserUseCase: SaveUserUseCase,
+    private val getUserGateway: GetUserGateway,
+    private val saveUserGateway: SaveUserGateway,
     private val dailyUpdateHandler: DailyUpdateHandler,
 ) : BaseViewModel<SettingsScreenViewModel.State, SettingsScreenViewModel.Event>(State.Loading) {
 
@@ -26,7 +26,7 @@ class SettingsScreenViewModel @Inject constructor(
 
     private fun fetchUserData() {
         viewModelScope.launch {
-            val user = getUserUseCase.execute()
+            val user = getUserGateway.execute()
 
             produceState(
                 State.Display(user = user)
@@ -66,7 +66,7 @@ class SettingsScreenViewModel @Inject constructor(
                         state.copy(user = newUser)
                     )
 
-                    saveUserUseCase.execute(newUser)
+                    saveUserGateway.execute(newUser)
                     dailyUpdateHandler.update(Unit)
                 }
             }

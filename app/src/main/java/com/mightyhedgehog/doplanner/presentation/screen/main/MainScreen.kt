@@ -13,9 +13,9 @@ import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import com.mightyhedgehog.doplanner.app.navigation.Screens
 import com.mightyhedgehog.doplanner.app.navigation.SetupNavGraph
-import com.mightyhedgehog.doplanner.ui.compoments.bars.bottombar.DoPlannerBottomBar
-import com.mightyhedgehog.doplanner.ui.compoments.buttons.DoPlannerFloatingButton
-import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.bars.bottombar.DoPlannerBottomBar
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.buttons.DoPlannerFloatingButton
+import com.mightyhedgehog.doplanner.presentation.ui.theme.DoPlannerTheme
 
 @Composable
 fun MainScreen() {

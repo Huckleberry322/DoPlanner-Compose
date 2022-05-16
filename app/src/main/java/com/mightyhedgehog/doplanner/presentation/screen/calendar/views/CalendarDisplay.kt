@@ -9,9 +9,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.presentation.screen.calendar.CalendarScreenViewModel
-import com.mightyhedgehog.doplanner.ui.compoments.screen.calendar.CalendarLazyColumn
-import com.mightyhedgehog.doplanner.ui.compoments.screen.calendar.DoPlannerCalendar
-import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.calendar.CalendarLazyColumn
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.calendar.DoPlannerCalendar
+import com.mightyhedgehog.doplanner.presentation.ui.theme.DoPlannerTheme
 import java.time.LocalDate
 
 @Composable

@@ -7,12 +7,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.mightyhedgehog.doplanner.presentation.screen.settings.SettingsScreenViewModel
-import com.mightyhedgehog.doplanner.ui.compoments.screen.settings.ChangeNameTitle
-import com.mightyhedgehog.doplanner.ui.compoments.screen.settings.ChangeStyleTitle
-import com.mightyhedgehog.doplanner.ui.compoments.screen.settings.ColorSchemeBox
-import com.mightyhedgehog.doplanner.ui.compoments.screen.settings.SettingsTitle
-import com.mightyhedgehog.doplanner.ui.compoments.text.ChangeUserNameTextField
-import com.mightyhedgehog.doplanner.ui.theme.*
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.settings.ChangeNameTitle
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.settings.ChangeStyleTitle
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.settings.ColorSchemeBox
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.settings.SettingsTitle
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.text.ChangeUserNameTextField
+import com.mightyhedgehog.doplanner.presentation.ui.theme.*
 
 @Composable
 fun SettingsDisplay(

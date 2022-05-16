@@ -10,10 +10,10 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.mightyhedgehog.doplanner.domain.model.task.Task
+import com.mightyhedgehog.doplanner.presentation.model.task.Task
 import com.mightyhedgehog.doplanner.presentation.screen.daily.DailyScreenViewModel
-import com.mightyhedgehog.doplanner.ui.compoments.screen.daily.*
-import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.daily.*
+import com.mightyhedgehog.doplanner.presentation.ui.theme.DoPlannerTheme
 
 @Composable
 fun DailyDisplay(

@@ -19,12 +19,12 @@ fun NavGraphBuilder.dailyGraph(navController: NavHostController) {
         route = DAILY_SCREEN_NESTED_GRAPH
     ) {
         composable(route = Screens.DailyScreen.route) {
-            val vm = hiltViewModel<DailyScreenViewModel>()
-            DailyScreen(vm = vm, navController = navController)
+            val viewModel = hiltViewModel<DailyScreenViewModel>()
+            DailyScreen(vm = viewModel)
         }
         composable(route = Screens.AddTaskScreen.route) {
-            val vm = hiltViewModel<AddTaskScreenViewModel>()
-            AddTaskScreen(vm = vm, navController = navController)
+            val viewModel = hiltViewModel<AddTaskScreenViewModel>()
+            AddTaskScreen(vm = viewModel, navController = navController)
         }
     }
 }

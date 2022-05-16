@@ -19,11 +19,8 @@ fun NavGraphBuilder.settingsGraph(
         route = SETTINGS_SCREEN_NESTED_GRAPH
     ) {
         composable(route = Screens.SettingsScreen.route) {
-            val vm = hiltViewModel<SettingsScreenViewModel>()
-            SettingsScreen(
-                vm = vm,
-                navController = navController,
-            )
+            val viewModel = hiltViewModel<SettingsScreenViewModel>()
+            SettingsScreen(vm = viewModel)
         }
     }
 }

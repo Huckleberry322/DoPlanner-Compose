@@ -2,8 +2,8 @@ package com.mightyhedgehog.doplanner.presentation.screen.calendar
 
 import androidx.lifecycle.viewModelScope
 import com.mightyhedgehog.doplanner.app.core.BaseViewModel
-import com.mightyhedgehog.doplanner.domain.model.task.Task
-import com.mightyhedgehog.doplanner.domain.usecase.task.GetTasksUseCase
+import com.mightyhedgehog.doplanner.presentation.model.task.Task
+import com.mightyhedgehog.doplanner.data.gateway.task.GetTasksGateway
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import java.time.LocalDate
@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class CalendarScreenViewModel @Inject constructor(
-    private val getTasksUseCase: GetTasksUseCase,
+    private val getTasksGateway: GetTasksGateway,
     calendarUpdateHandler: CalendarUpdateHandler,
 ) : BaseViewModel<CalendarScreenViewModel.State, CalendarScreenViewModel.Event>(State.Loading) {
 
@@ -22,7 +22,7 @@ class CalendarScreenViewModel @Inject constructor(
 
     private fun initCalendarViewModel() {
         viewModelScope.launch {
-            val taskList = getTasksUseCase.execute()
+            val taskList = getTasksGateway.execute()
 
             produceState(
                 State.Display(

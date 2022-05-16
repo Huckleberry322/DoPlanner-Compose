@@ -2,12 +2,11 @@ package com.mightyhedgehog.doplanner.presentation.screen.daily
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.navigation.NavHostController
 import com.mightyhedgehog.doplanner.presentation.screen.daily.views.DailyDisplay
-import com.mightyhedgehog.doplanner.presentation.views.LoadingView
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.common.LoadingView
 
 @Composable
-fun DailyScreen(vm: DailyScreenViewModel, navController: NavHostController) {
+fun DailyScreen(vm: DailyScreenViewModel) {
     val viewState = vm.stateData.observeAsState(initial = vm.getDefaultState())
 
     when (val state = viewState.value) {

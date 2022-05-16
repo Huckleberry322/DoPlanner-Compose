@@ -12,8 +12,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
-import com.mightyhedgehog.doplanner.ui.compoments.buttons.DoPlannerBasicButton
-import com.mightyhedgehog.doplanner.ui.theme.DoPlannerTheme
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.buttons.DoPlannerBasicButton
+import com.mightyhedgehog.doplanner.presentation.ui.theme.DoPlannerTheme
 
 @Composable
 fun SimpleDoPlannerChoseDialog(

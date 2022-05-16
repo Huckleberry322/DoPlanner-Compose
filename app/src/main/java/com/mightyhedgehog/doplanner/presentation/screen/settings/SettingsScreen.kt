@@ -2,14 +2,12 @@ package com.mightyhedgehog.doplanner.presentation.screen.settings
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.navigation.NavHostController
 import com.mightyhedgehog.doplanner.presentation.screen.settings.views.SettingsDisplay
-import com.mightyhedgehog.doplanner.presentation.views.LoadingView
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.common.LoadingView
 
 @Composable
 fun SettingsScreen(
     vm: SettingsScreenViewModel,
-    navController: NavHostController,
 ) {
     val viewState = vm.stateData.observeAsState(initial = vm.getDefaultState())
 

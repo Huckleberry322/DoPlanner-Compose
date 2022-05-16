@@ -4,7 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.navigation.NavController
 import com.mightyhedgehog.doplanner.presentation.screen.daily.add.views.AddTaskDisplay
-import com.mightyhedgehog.doplanner.presentation.views.LoadingView
+import com.mightyhedgehog.doplanner.presentation.ui.compoments.screen.common.LoadingView
 
 @Composable
 fun AddTaskScreen(

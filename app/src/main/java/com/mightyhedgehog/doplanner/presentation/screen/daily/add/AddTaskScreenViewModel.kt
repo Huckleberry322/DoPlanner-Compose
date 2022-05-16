@@ -2,9 +2,9 @@ package com.mightyhedgehog.doplanner.presentation.screen.daily.add
 
 import androidx.lifecycle.viewModelScope
 import com.mightyhedgehog.doplanner.app.core.BaseViewModel
-import com.mightyhedgehog.doplanner.domain.model.task.Priority
-import com.mightyhedgehog.doplanner.domain.model.task.Task
-import com.mightyhedgehog.doplanner.domain.usecase.task.AddTaskUseCase
+import com.mightyhedgehog.doplanner.presentation.model.task.Priority
+import com.mightyhedgehog.doplanner.presentation.model.task.Task
+import com.mightyhedgehog.doplanner.data.gateway.task.AddTaskGateway
 import com.mightyhedgehog.doplanner.ext.emptyString
 import com.mightyhedgehog.doplanner.presentation.screen.calendar.CalendarUpdateHandler
 import com.mightyhedgehog.doplanner.presentation.screen.daily.DailyUpdateHandler
@@ -18,7 +18,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class AddTaskScreenViewModel @Inject constructor(
-    private val addTaskUseCase: AddTaskUseCase,
+    private val addTaskGateway: AddTaskGateway,
     private val dailyUpdateHandler: DailyUpdateHandler,
     private val calendarUpdateHandler: CalendarUpdateHandler,
 ) : BaseViewModel<AddTaskScreenViewModel.State, AddTaskScreenViewModel.Event>(State.Display()) {
@@ -85,7 +85,7 @@ class AddTaskScreenViewModel @Inject constructor(
         when (event) {
             Event.SaveTask -> {
                 viewModelScope.launch {
-                    addTaskUseCase.execute(currentState.task)
+                    addTaskGateway.execute(currentState.task)
                     dailyUpdateHandler.update(Unit)
                     calendarUpdateHandler.update(Unit)
 
